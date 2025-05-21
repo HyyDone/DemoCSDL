@@ -1,0 +1,58 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\emmot\\Downloads\\KaraokeWeb\\User\\UserDACS\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{44418842-5AF5-4AEB-B5CA-97D545AE707F}|UserDACS\\UserDACS.csproj|c:\\users\\emmot\\downloads\\karaokeweb\\user\\userdacs\\userdacs\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{44418842-5AF5-4AEB-B5CA-97D545AE707F}|UserDACS\\UserDACS.csproj|solutionrelative:userdacs\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44418842-5AF5-4AEB-B5CA-97D545AE707F}|UserDACS\\UserDACS.csproj|c:\\users\\emmot\\downloads\\karaokeweb\\user\\userdacs\\userdacs\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{44418842-5AF5-4AEB-B5CA-97D545AE707F}|UserDACS\\UserDACS.csproj|solutionrelative:userdacs\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\emmot\\Downloads\\KaraokeWeb\\User\\UserDACS\\UserDACS\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "UserDACS\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\emmot\\Downloads\\KaraokeWeb\\User\\UserDACS\\UserDACS\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "UserDACS\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAgwBcAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-19T17:26:20.934Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\emmot\\Downloads\\KaraokeWeb\\User\\UserDACS\\UserDACS\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "UserDACS\\Views\\Home\\Index.cshtml",
+              "ToolTip": "C:\\Users\\emmot\\Downloads\\KaraokeWeb\\User\\UserDACS\\UserDACS\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "UserDACS\\Views\\Home\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADABAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-19T17:25:13.978Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

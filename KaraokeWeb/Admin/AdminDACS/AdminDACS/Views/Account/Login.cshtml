@@ -1,0 +1,94 @@
+﻿@{
+    ViewData["Title"] = "Đăng nhập ";
+    ViewData["HideLayoutHeader"] = true;
+}
+
+<style>
+    body {
+        background: linear-gradient(to right, #6dd5ed, #2193b0);
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+    .login-container {
+        background-color: white;
+        width: 350px;
+        margin: 80px auto;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        animation: slideDown 0.5s ease-out;
+    }
+
+    keyframes slideDown {
+        from
+
+    {
+        transform: translateY(-30px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    }
+
+    .login-container h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #333;
+    }
+
+    .login-container input[type="text"],
+    .login-container input[type="password"] {
+        width: 100%;
+        padding: 12px;
+        margin-bottom: 16px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        transition: all 0.3s;
+    }
+
+    .login-container input:focus {
+        border-color: #2193b0;
+        box-shadow: 0 0 5px rgba(33, 147, 176, 0.5);
+        transform: scale(1.02);
+    }
+
+    .login-container button {
+        width: 100%;
+        padding: 12px;
+        background-color: #2193b0;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
+        cursor: pointer;
+    }
+
+        .login-container button:hover {
+            background-color: #17698e;
+        }
+
+    .error-message {
+        color: red;
+        text-align: center;
+    }
+</style>
+
+<div class="login-container">
+    <h2>Đăng nhập</h2>
+
+    <form method="post">
+        <input type="text" name="username" placeholder="Tên đăng nhập" required />
+        <input type="password" name="password" placeholder="Mật khẩu" required />
+        <button type="submit">Đăng nhập</button>
+
+        @if (ViewBag.Error != null)
+        {
+            <p class="error-message">@ViewBag.Error</p>
+        }
+    </form>
+</div>
