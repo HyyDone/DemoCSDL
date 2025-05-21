@@ -1,7 +1,18 @@
+using AdminDACS.Models;
+using AdminDACS.Repositories;
+using Microsoft.EntityFrameworkCore;
+using UserDACS.Repositories;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDbContext<ApplicationDBContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddScoped<IRoomRepository, EFRoomRepository>();
+builder.Services.AddScoped<IBookingRepository, EFBookingRepository>();
+builder.Services.AddScoped<ICustomerRepository, EFCustomerRepository>();
 
 builder.Services.AddAuthentication("MyCookieAuth")
     .AddCookie("MyCookieAuth", options =>
