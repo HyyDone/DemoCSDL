@@ -1,7 +1,26 @@
+using AdminDACS.Models;
+using AdminDACS.Repositories;
+using Microsoft.AspNetCore.Http.Features;
+using Microsoft.EntityFrameworkCore;
+using UserDACS.Repositories;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+builder.Services.AddDbContext<ApplicationDBContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddScoped<IRoomRepository, EFRoomRepository>();
+builder.Services.AddScoped<IBookingRepository, EFBookingRepository>();
+builder.Services.AddScoped<ICustomerRepository, EFCustomerRepository>();
+builder.Services.AddScoped<IMenuRepository, EFMenuRepository>();
+builder.Services.AddScoped<IWarehouseRepository, EFWarehouseRepository>();
+
+
+builder.Services.Configure<FormOptions>(options =>
+{
+    options.MultipartBodyLengthLimit = 104857600; // 100 MB
+});
 
 builder.Services.AddAuthentication("MyCookieAuth")
     .AddCookie("MyCookieAuth", options =>

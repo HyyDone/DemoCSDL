@@ -28,8 +28,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/emmot/Downloads/KaraokeWeb/Admin/AdminDACS/AdminDACS/Views/Menu/MenuList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVudVxNZW51TGlzdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/emmot/Downloads/KaraokeWeb/Admin/AdminDACS/AdminDACS/Views/Room/AddRoom.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm9vbVxBZGRSb29tLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/emmot/Downloads/KaraokeWeb/Admin/AdminDACS/AdminDACS/Views/Room/RoomList.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm9vbVxSb29tTGlzdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/emmot/Downloads/KaraokeWeb/Admin/AdminDACS/AdminDACS/Views/Room/UpdateRoom.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm9vbVxVcGRhdGVSb29tLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/emmot/Downloads/KaraokeWeb/Admin/AdminDACS/AdminDACS/Views/Shared/Error.cshtml]
@@ -38,6 +50,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/emmot/Downloads/KaraokeWeb/Admin/AdminDACS/AdminDACS/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/emmot/Downloads/KaraokeWeb/Admin/AdminDACS/AdminDACS/Views/Warehouse/WarehouseList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcV2FyZWhvdXNlXFdhcmVob3VzZUxpc3QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/emmot/Downloads/KaraokeWeb/Admin/AdminDACS/AdminDACS/Views/_ViewImports.cshtml]

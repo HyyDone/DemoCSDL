@@ -1,72 +1,128 @@
-﻿@{
+﻿@model List<AdminDACS.Models.RoomType>
+
+@{
     ViewData["Title"] = "Danh sách phòng";
 }
 
 <h2 class="text-center mb-4 text-primary">📋 Danh sách các nhóm phòng VIP</h2>
 
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert" id="successAlert">
+        <strong>Thành công!</strong> @TempData["SuccessMessage"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+else if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert" id="errorAlert">
+        <strong>Lỗi!</strong> @TempData["ErrorMessage"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
 <div class="container">
     <div class="list-group shadow rounded">
-
-        <button class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
-                onclick="toggleSubList('vip34', this)">
-            <span>Phòng VIP 3-4</span>
-            <i class="bi bi-chevron-down rotate-icon"></i>
-        </button>
-        <div id="vip34" class="sub-list collapse-box">
-            <ul class="list-group list-group-flush ms-4">
-                @for (int i = 1; i <= 5; i++)
-                {
-                    <li class="list-group-item">Phòng 3-4 số @i</li>
-                }
-            </ul>
-        </div>
-
-        <button class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
-                onclick="toggleSubList('vip7', this)">
-            <span>Phòng VIP 7</span>
-            <i class="bi bi-chevron-down rotate-icon"></i>
-        </button>
-        <div id="vip7" class="sub-list collapse-box">
-            <ul class="list-group list-group-flush ms-4">
-                @for (int i = 1; i <= 5; i++)
-                {
-                    <li class="list-group-item">Phòng 7 số @i</li>
-                }
-            </ul>
-        </div>
-
-        <button class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
-                onclick="toggleSubList('vip1_9', this)">
-            <span>Phòng VIP 1-9</span>
-            <i class="bi bi-chevron-down rotate-icon"></i>
-        </button>
-        <div id="vip1_9" class="sub-list collapse-box">
-            <ul class="list-group list-group-flush ms-4">
-                @for (int i = 1; i <= 5; i++)
-                {
-                    <li class="list-group-item">Phòng 1-9 số @i</li>
-                }
-            </ul>
-        </div>
-
-        <button class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
-                onclick="toggleSubList('vipvv', this)">
-            <span>Phòng VIP VV</span>
-            <i class="bi bi-chevron-down rotate-icon"></i>
-        </button>
-        <div id="vipvv" class="sub-list collapse-box">
-            <ul class="list-group list-group-flush ms-4">
-                @for (int i = 1; i <= 5; i++)
-                {
-                    <li class="list-group-item">Phòng VV số @i</li>
-                }
-            </ul>
-        </div>
+        @foreach (var roomType in Model)
+        {
+            string id = "collapse" + roomType.MaLoaiPhong;
+            <button class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+                    onclick="toggleSubList('@id', this)">
+                <span>@roomType.LoaiPhong</span>
+                <i class="bi bi-chevron-down rotate-icon"></i>
+            </button>
+            <div id="@id" class="sub-list collapse-box">
+                <ul class="list-group list-group-flush ms-4">
+                    @foreach (var room in roomType.Rooms)
+                    {
+                        <li class="list-group-item">
+                            <div class="d-flex align-items-center">
+                                <a href="@Url.Action("UpdateRoom", "Room", new { id = room.MaPhong })"
+                                    class="btn btn-edit btn-sm me-2">
+                                    ✏️ Sửa
+                                </a>
+                                <span>@room.TenPhong</span>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <a href="@Url.Action("Order", "Booking", new { roomId = room.MaPhong })"
+                                    class="btn btn-order btn-sm me-2">
+                                    🛒 Order
+                                </a>
+                                <form method="post" asp-action="CancelBookingConfirmed" asp-controller="Booking"
+                                        onsubmit="return confirm('Bạn có chắc muốn hủy đặt phòng này không?');" class="d-inline">
+                                    <input type="hidden" name="roomId" value="@room.MaPhong" />
+                                    <button type="submit" class="btn btn-cancel btn-sm me-2">
+                                        ❌ Hủy đặt phòng
+                                    </button>
+                                    @Html.AntiForgeryToken()
+                                </form>
+                                <a href="javascript:void(0);"
+                                    class="btn btn-info btn-sm me-2 btn-view-customer"
+                                    data-roomid="@room.MaPhong"
+                                    data-roomname="@room.LoaiPhong"
+                                    data-bs-toggle="modal" data-bs-target="#bookingModal">
+                                    ℹ️ Xem khách hàng
+                                </a>
+                                <form method="post" asp-action="DeleteConfirmed" asp-controller="Room" onsubmit="return confirm('Bạn có chắc muốn xóa phòng này không?');" class="d-inline">
+                                    <input type="hidden" name="id" value="@room.MaPhong" />
+                                    <button type="submit" class="btn btn-delete-single btn-sm">
+                                        🗑️ Xóa
+                                    </button>
+                                </form>
+                            </div>
+                        </li>
+                    }
+                </ul>
+            </div>
+        }
     </div>
+
     <div class="d-flex justify-content-end mt-4">
-        <a href="#" class="btn btn-success btn-lg shadow-sm rounded-pill px-4 py-2">
+        <a href="@Url.Action("AddRoom", "Room")" class="btn btn-success btn-lg shadow-sm rounded-pill px-4 py-2 me-3">
             ➕ Thêm phòng
         </a>
+    </div>
+</div>
+
+<!-- Modal hiển thị thông tin khách hàng -->
+<div class="modal fade" id="bookingModal" tabindex="-1" aria-labelledby="bookingModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content bg-dark text-white">
+            <div class="modal-header">
+                <h5 class="modal-title text-center w-100 border border-light rounded py-2" id="bookingModalLabel">
+                    Thông tin khách đặt phòng
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Thông báo khi chưa có khách -->
+                <div id="noCustomerMsg" class="alert alert-warning text-center" style="display:none;">
+                    Chưa có khách hàng đặt bàn.
+                </div>
+                <!-- Form hiển thị thông tin khách -->
+                <form id="customerInfoForm" style="display:none;">
+                    <div class="mb-3">
+                        <label for="fullname" class="form-label">Họ tên</label>
+                        <input type="text" name="FullName" class="form-control" id="fullname" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="phone" class="form-label">Số điện thoại</label>
+                        <input type="tel" name="Phone" class="form-control" id="phone" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="text" name="Email" class="form-control" id="email" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="datetime" class="form-label">Thời gian đặt</label>
+                        <input type="datetime-local" name="BookingTime" class="form-control" id="datetime" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="room" class="form-label">Phòng</label>
+                        <input type="text" name="RoomName" class="form-control" id="room" readonly>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -75,6 +131,10 @@
         cursor: pointer;
         transition: background-color 0.3s ease, box-shadow 0.3s ease;
         font-weight: 500;
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        padding: 0.375rem 1rem;
     }
 
         .list-group-item:hover {
@@ -104,6 +164,7 @@
         margin-bottom: 30px;
     }
 
+    /* Nút Thêm */
     .btn-success {
         background-color: #28a745;
         border: none;
@@ -115,9 +176,107 @@
             transform: scale(1.05);
         }
 
+    /* Nút Xóa ở từng phòng */
+    .btn-delete-single {
+        background-color: #6c757d; /* xám */
+        color: white;
+        border: none;
+        padding: 4px 10px;
+        font-weight: 600;
+        border-radius: 20px;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+        .btn-delete-single:hover {
+            background-color: #5a6268;
+            transform: scale(1.05);
+            color: white;
+        }
+
+    /* Nút Đặt phòng (Order) */
+    .btn-order {
+        background-color: #28a745; /* xanh lá */
+        color: white;
+        border: none;
+        padding: 4px 10px;
+        font-weight: 600;
+        border-radius: 20px;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+        .btn-order:hover {
+            background-color: #218838;
+            transform: scale(1.05);
+            color: white;
+        }
+
+    /* Nút Hủy đặt phòng (Cancel) */
+    .btn-cancel {
+        background-color: #dc3545; /* đỏ bootstrap */
+        color: white;
+        border: none;
+        padding: 4px 10px;
+        font-weight: 600;
+        border-radius: 20px;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+        .btn-cancel:hover {
+            background-color: #a71d2a;
+            transform: scale(1.05);
+            color: white;
+        }
+
+    /* Nút Xem thông tin khách hàng (Info) */
+    .btn-info {
+        background-color: #ffc107; /* vàng bootstrap */
+        color: black;
+        border: none;
+        padding: 4px 10px;
+        font-weight: 600;
+        border-radius: 20px;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+        .btn-info:hover {
+            background-color: #e0a800;
+            color: black;
+            transform: scale(1.05);
+        }
+
+    /* Nút Sửa */
+    .btn-edit {
+        background-color: #e83e8c; /* hồng */
+        color: white;
+        border: none;
+        padding: 4px 10px;
+        font-weight: 600;
+        border-radius: 20px;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+        .btn-edit:hover {
+            background-color: #c72f6f;
+            color: white;
+            transform: scale(1.05);
+        }
+
+    /* Căn chỉnh 2 phần trong li */
+    .list-group-item > div:first-child {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .list-group-item > div:last-child {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
 </style>
 
 @section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         function toggleSubList(id, btn) {
             const content = document.getElementById(id);
@@ -125,8 +284,50 @@
             content.classList.toggle("open");
             icon.classList.toggle("rotate");
         }
-    </script>
 
-    <!-- Bootstrap Icon CDN (nếu chưa có) -->
+        $(document).ready(function () {
+            $('#bookingModal').on('show.bs.modal', function (event) {
+                var button = $(event.relatedTarget);
+                var roomId = button.data('roomid');
+                var roomName = button.data('roomname');
+                var modal = $(this);
+
+                modal.find('#noCustomerMsg').hide();
+                modal.find('#customerInfoForm').hide();
+                modal.find('#fullname').val('');
+                modal.find('#phone').val('');
+                modal.find('#email').val('');
+                modal.find('#datetime').val('');
+                modal.find('#room').val(roomName);
+
+                $.ajax({
+                    url: '@Url.Action("GetCustomerInfo", "Booking")',
+                    type: 'GET',
+                    data: { roomId: roomId },
+                    success: function (response) {
+                        if (response.hasCustomer) {
+                            var c = response.data;
+                            modal.find('#fullname').val(c.customerName);
+                            modal.find('#phone').val(c.phone);
+                            modal.find('#email').val(c.email);
+
+                            if (c.bookingDate) {
+                                var d = new Date(c.bookingDate);
+                                var formatted = d.toISOString().slice(0,16);
+                                modal.find('#datetime').val(formatted);
+                            }
+
+                            modal.find('#customerInfoForm').show();
+                        } else {
+                            modal.find('#noCustomerMsg').show();
+                        }
+                    },
+                    error: function () {
+                        modal.find('#noCustomerMsg').text('Lỗi khi tải thông tin khách hàng.').show();
+                    }
+                });
+            });
+        });
+    </script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
 }
