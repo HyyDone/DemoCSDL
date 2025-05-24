@@ -3,12 +3,104 @@
   "WorkspaceRootPath": "C:\\Users\\emmot\\Downloads\\KaraokeWeb\\User\\UserDACS\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{44418842-5AF5-4AEB-B5CA-97D545AE707F}|UserDACS\\UserDACS.csproj|c:\\users\\emmot\\downloads\\karaokeweb\\user\\userdacs\\userdacs\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{44418842-5AF5-4AEB-B5CA-97D545AE707F}|UserDACS\\UserDACS.csproj|solutionrelative:userdacs\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{44418842-5AF5-4AEB-B5CA-97D545AE707F}|UserDACS\\UserDACS.csproj|c:\\users\\emmot\\downloads\\karaokeweb\\user\\userdacs\\userdacs\\controllers\\bookingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{44418842-5AF5-4AEB-B5CA-97D545AE707F}|UserDACS\\UserDACS.csproj|solutionrelative:userdacs\\controllers\\bookingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44418842-5AF5-4AEB-B5CA-97D545AE707F}|UserDACS\\UserDACS.csproj|c:\\users\\emmot\\downloads\\karaokeweb\\user\\userdacs\\userdacs\\views\\room\\list.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{44418842-5AF5-4AEB-B5CA-97D545AE707F}|UserDACS\\UserDACS.csproj|solutionrelative:userdacs\\views\\room\\list.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44418842-5AF5-4AEB-B5CA-97D545AE707F}|UserDACS\\UserDACS.csproj|c:\\users\\emmot\\downloads\\karaokeweb\\user\\userdacs\\userdacs\\migrations\\20250522170528_initial.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{44418842-5AF5-4AEB-B5CA-97D545AE707F}|UserDACS\\UserDACS.csproj|solutionrelative:userdacs\\migrations\\20250522170528_initial.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44418842-5AF5-4AEB-B5CA-97D545AE707F}|UserDACS\\UserDACS.csproj|c:\\users\\emmot\\downloads\\karaokeweb\\user\\userdacs\\userdacs\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{44418842-5AF5-4AEB-B5CA-97D545AE707F}|UserDACS\\UserDACS.csproj|solutionrelative:userdacs\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44418842-5AF5-4AEB-B5CA-97D545AE707F}|UserDACS\\UserDACS.csproj|c:\\users\\emmot\\downloads\\karaokeweb\\user\\userdacs\\userdacs\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{44418842-5AF5-4AEB-B5CA-97D545AE707F}|UserDACS\\UserDACS.csproj|solutionrelative:userdacs\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44418842-5AF5-4AEB-B5CA-97D545AE707F}|UserDACS\\UserDACS.csproj|c:\\users\\emmot\\downloads\\karaokeweb\\user\\userdacs\\userdacs\\userdacs.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
+      "RelativeMoniker": "D:0:0:{44418842-5AF5-4AEB-B5CA-97D545AE707F}|UserDACS\\UserDACS.csproj|solutionrelative:userdacs\\userdacs.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44418842-5AF5-4AEB-B5CA-97D545AE707F}|UserDACS\\UserDACS.csproj|c:\\users\\emmot\\downloads\\karaokeweb\\user\\userdacs\\userdacs\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{44418842-5AF5-4AEB-B5CA-97D545AE707F}|UserDACS\\UserDACS.csproj|solutionrelative:userdacs\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44418842-5AF5-4AEB-B5CA-97D545AE707F}|UserDACS\\UserDACS.csproj|c:\\users\\emmot\\downloads\\karaokeweb\\user\\userdacs\\userdacs\\models\\booking.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{44418842-5AF5-4AEB-B5CA-97D545AE707F}|UserDACS\\UserDACS.csproj|solutionrelative:userdacs\\models\\booking.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44418842-5AF5-4AEB-B5CA-97D545AE707F}|UserDACS\\UserDACS.csproj|c:\\users\\emmot\\downloads\\karaokeweb\\user\\userdacs\\userdacs\\controllers\\roomcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{44418842-5AF5-4AEB-B5CA-97D545AE707F}|UserDACS\\UserDACS.csproj|solutionrelative:userdacs\\controllers\\roomcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44418842-5AF5-4AEB-B5CA-97D545AE707F}|UserDACS\\UserDACS.csproj|c:\\users\\emmot\\downloads\\karaokeweb\\user\\userdacs\\userdacs\\models\\customer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{44418842-5AF5-4AEB-B5CA-97D545AE707F}|UserDACS\\UserDACS.csproj|solutionrelative:userdacs\\models\\customer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44418842-5AF5-4AEB-B5CA-97D545AE707F}|UserDACS\\UserDACS.csproj|c:\\users\\emmot\\downloads\\karaokeweb\\user\\userdacs\\userdacs\\repositories\\ibookingrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{44418842-5AF5-4AEB-B5CA-97D545AE707F}|UserDACS\\UserDACS.csproj|solutionrelative:userdacs\\repositories\\ibookingrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44418842-5AF5-4AEB-B5CA-97D545AE707F}|UserDACS\\UserDACS.csproj|c:\\users\\emmot\\downloads\\karaokeweb\\user\\userdacs\\userdacs\\repositories\\iroomrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{44418842-5AF5-4AEB-B5CA-97D545AE707F}|UserDACS\\UserDACS.csproj|solutionrelative:userdacs\\repositories\\iroomrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44418842-5AF5-4AEB-B5CA-97D545AE707F}|UserDACS\\UserDACS.csproj|c:\\users\\emmot\\downloads\\karaokeweb\\user\\userdacs\\userdacs\\repositories\\icustomerrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{44418842-5AF5-4AEB-B5CA-97D545AE707F}|UserDACS\\UserDACS.csproj|solutionrelative:userdacs\\repositories\\icustomerrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44418842-5AF5-4AEB-B5CA-97D545AE707F}|UserDACS\\UserDACS.csproj|c:\\users\\emmot\\downloads\\karaokeweb\\user\\userdacs\\userdacs\\repositories\\efbookingrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{44418842-5AF5-4AEB-B5CA-97D545AE707F}|UserDACS\\UserDACS.csproj|solutionrelative:userdacs\\repositories\\efbookingrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\emmot\\Downloads\\KaraokeWeb\\User\\UserDACS\\UserDACS\\Migrations\\20250521184404_Initial.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:UserDACS\\Migrations\\20250521184404_Initial.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44418842-5AF5-4AEB-B5CA-97D545AE707F}|UserDACS\\UserDACS.csproj|c:\\users\\emmot\\downloads\\karaokeweb\\user\\userdacs\\userdacs\\models\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{44418842-5AF5-4AEB-B5CA-97D545AE707F}|UserDACS\\UserDACS.csproj|solutionrelative:userdacs\\models\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44418842-5AF5-4AEB-B5CA-97D545AE707F}|UserDACS\\UserDACS.csproj|c:\\users\\emmot\\downloads\\karaokeweb\\user\\userdacs\\userdacs\\repositories\\efcustomerrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{44418842-5AF5-4AEB-B5CA-97D545AE707F}|UserDACS\\UserDACS.csproj|solutionrelative:userdacs\\repositories\\efcustomerrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44418842-5AF5-4AEB-B5CA-97D545AE707F}|UserDACS\\UserDACS.csproj|c:\\users\\emmot\\downloads\\karaokeweb\\user\\userdacs\\userdacs\\models\\room.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{44418842-5AF5-4AEB-B5CA-97D545AE707F}|UserDACS\\UserDACS.csproj|solutionrelative:userdacs\\models\\room.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44418842-5AF5-4AEB-B5CA-97D545AE707F}|UserDACS\\UserDACS.csproj|c:\\users\\emmot\\downloads\\karaokeweb\\user\\userdacs\\userdacs\\models\\roomimage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{44418842-5AF5-4AEB-B5CA-97D545AE707F}|UserDACS\\UserDACS.csproj|solutionrelative:userdacs\\models\\roomimage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{44418842-5AF5-4AEB-B5CA-97D545AE707F}|UserDACS\\UserDACS.csproj|c:\\users\\emmot\\downloads\\karaokeweb\\user\\userdacs\\userdacs\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{44418842-5AF5-4AEB-B5CA-97D545AE707F}|UserDACS\\UserDACS.csproj|solutionrelative:userdacs\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44418842-5AF5-4AEB-B5CA-97D545AE707F}|UserDACS\\UserDACS.csproj|c:\\users\\emmot\\downloads\\karaokeweb\\user\\userdacs\\userdacs\\models\\roomtype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{44418842-5AF5-4AEB-B5CA-97D545AE707F}|UserDACS\\UserDACS.csproj|solutionrelative:userdacs\\models\\roomtype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\emmot\\Downloads\\KaraokeWeb\\User\\UserDACS\\UserDACS\\Migrations\\20250521170322_Initial.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:UserDACS\\Migrations\\20250521170322_Initial.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44418842-5AF5-4AEB-B5CA-97D545AE707F}|UserDACS\\UserDACS.csproj|c:\\users\\emmot\\downloads\\karaokeweb\\user\\userdacs\\userdacs\\repositories\\efroomrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{44418842-5AF5-4AEB-B5CA-97D545AE707F}|UserDACS\\UserDACS.csproj|solutionrelative:userdacs\\repositories\\efroomrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44418842-5AF5-4AEB-B5CA-97D545AE707F}|UserDACS\\UserDACS.csproj|c:\\users\\emmot\\downloads\\karaokeweb\\user\\userdacs\\userdacs\\userdacs.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{44418842-5AF5-4AEB-B5CA-97D545AE707F}|UserDACS\\UserDACS.csproj|solutionrelative:userdacs\\userdacs.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44418842-5AF5-4AEB-B5CA-97D545AE707F}|UserDACS\\UserDACS.csproj|c:\\users\\emmot\\downloads\\karaokeweb\\user\\userdacs\\userdacs\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{44418842-5AF5-4AEB-B5CA-97D545AE707F}|UserDACS\\UserDACS.csproj|solutionrelative:userdacs\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,15 +110,301 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 7,
           "Children": [
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "20250522170528_Initial.cs",
+              "DocumentMoniker": "C:\\Users\\emmot\\Downloads\\KaraokeWeb\\User\\UserDACS\\UserDACS\\Migrations\\20250522170528_Initial.cs",
+              "RelativeDocumentMoniker": "UserDACS\\Migrations\\20250522170528_Initial.cs",
+              "ToolTip": "C:\\Users\\emmot\\Downloads\\KaraokeWeb\\User\\UserDACS\\UserDACS\\Migrations\\20250522170528_Initial.cs",
+              "RelativeToolTip": "UserDACS\\Migrations\\20250522170528_Initial.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-22T17:05:28.746Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "UserDACS",
+              "DocumentMoniker": "C:\\Users\\emmot\\Downloads\\KaraokeWeb\\User\\UserDACS\\UserDACS\\UserDACS.csproj",
+              "RelativeDocumentMoniker": "UserDACS\\UserDACS.csproj",
+              "ToolTip": "C:\\Users\\emmot\\Downloads\\KaraokeWeb\\User\\UserDACS\\UserDACS\\UserDACS.csproj",
+              "RelativeToolTip": "UserDACS\\UserDACS.csproj",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-05-22T13:28:16.566Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Customer.cs",
+              "DocumentMoniker": "C:\\Users\\emmot\\Downloads\\KaraokeWeb\\User\\UserDACS\\UserDACS\\Models\\Customer.cs",
+              "RelativeDocumentMoniker": "UserDACS\\Models\\Customer.cs",
+              "ToolTip": "C:\\Users\\emmot\\Downloads\\KaraokeWeb\\User\\UserDACS\\UserDACS\\Models\\Customer.cs",
+              "RelativeToolTip": "UserDACS\\Models\\Customer.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-21T17:46:14.052Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "IBookingRepository.cs",
+              "DocumentMoniker": "C:\\Users\\emmot\\Downloads\\KaraokeWeb\\User\\UserDACS\\UserDACS\\Repositories\\IBookingRepository.cs",
+              "RelativeDocumentMoniker": "UserDACS\\Repositories\\IBookingRepository.cs",
+              "ToolTip": "C:\\Users\\emmot\\Downloads\\KaraokeWeb\\User\\UserDACS\\UserDACS\\Repositories\\IBookingRepository.cs",
+              "RelativeToolTip": "UserDACS\\Repositories\\IBookingRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-21T18:03:02.464Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "RoomController.cs",
+              "DocumentMoniker": "C:\\Users\\emmot\\Downloads\\KaraokeWeb\\User\\UserDACS\\UserDACS\\Controllers\\RoomController.cs",
+              "RelativeDocumentMoniker": "UserDACS\\Controllers\\RoomController.cs",
+              "ToolTip": "C:\\Users\\emmot\\Downloads\\KaraokeWeb\\User\\UserDACS\\UserDACS\\Controllers\\RoomController.cs",
+              "RelativeToolTip": "UserDACS\\Controllers\\RoomController.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAmwCgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-21T16:50:39.723Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\emmot\\Downloads\\KaraokeWeb\\User\\UserDACS\\UserDACS\\Program.cs",
+              "RelativeDocumentMoniker": "UserDACS\\Program.cs",
+              "ToolTip": "C:\\Users\\emmot\\Downloads\\KaraokeWeb\\User\\UserDACS\\UserDACS\\Program.cs",
+              "RelativeToolTip": "UserDACS\\Program.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAB4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-21T17:00:51.627Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "List.cshtml",
+              "DocumentMoniker": "C:\\Users\\emmot\\Downloads\\KaraokeWeb\\User\\UserDACS\\UserDACS\\Views\\Room\\List.cshtml",
+              "RelativeDocumentMoniker": "UserDACS\\Views\\Room\\List.cshtml",
+              "ToolTip": "C:\\Users\\emmot\\Downloads\\KaraokeWeb\\User\\UserDACS\\UserDACS\\Views\\Room\\List.cshtml",
+              "RelativeToolTip": "UserDACS\\Views\\Room\\List.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFkAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-21T16:29:29.715Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "BookingController.cs",
+              "DocumentMoniker": "C:\\Users\\emmot\\Downloads\\KaraokeWeb\\User\\UserDACS\\UserDACS\\Controllers\\BookingController.cs",
+              "RelativeDocumentMoniker": "UserDACS\\Controllers\\BookingController.cs",
+              "ToolTip": "C:\\Users\\emmot\\Downloads\\KaraokeWeb\\User\\UserDACS\\UserDACS\\Controllers\\BookingController.cs",
+              "RelativeToolTip": "UserDACS\\Controllers\\BookingController.cs",
+              "ViewState": "AgIAAFQAAAAAAAAAAAAYwFoAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-21T17:49:13.332Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "C:\\Users\\emmot\\Downloads\\KaraokeWeb\\User\\UserDACS\\UserDACS\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "UserDACS\\Properties\\launchSettings.json",
+              "ToolTip": "C:\\Users\\emmot\\Downloads\\KaraokeWeb\\User\\UserDACS\\UserDACS\\Properties\\launchSettings.json",
+              "RelativeToolTip": "UserDACS\\Properties\\launchSettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-05-22T13:28:34.228Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Booking.cs",
+              "DocumentMoniker": "C:\\Users\\emmot\\Downloads\\KaraokeWeb\\User\\UserDACS\\UserDACS\\Models\\Booking.cs",
+              "RelativeDocumentMoniker": "UserDACS\\Models\\Booking.cs",
+              "ToolTip": "C:\\Users\\emmot\\Downloads\\KaraokeWeb\\User\\UserDACS\\UserDACS\\Models\\Booking.cs",
+              "RelativeToolTip": "UserDACS\\Models\\Booking.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAswBIAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-21T17:47:02.402Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\emmot\\Downloads\\KaraokeWeb\\User\\UserDACS\\UserDACS\\appsettings.json",
+              "RelativeDocumentMoniker": "UserDACS\\appsettings.json",
+              "ToolTip": "C:\\Users\\emmot\\Downloads\\KaraokeWeb\\User\\UserDACS\\UserDACS\\appsettings.json",
+              "RelativeToolTip": "UserDACS\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-05-21T16:32:10.865Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "IRoomRepository.cs",
+              "DocumentMoniker": "C:\\Users\\emmot\\Downloads\\KaraokeWeb\\User\\UserDACS\\UserDACS\\Repositories\\IRoomRepository.cs",
+              "RelativeDocumentMoniker": "UserDACS\\Repositories\\IRoomRepository.cs",
+              "ToolTip": "C:\\Users\\emmot\\Downloads\\KaraokeWeb\\User\\UserDACS\\UserDACS\\Repositories\\IRoomRepository.cs",
+              "RelativeToolTip": "UserDACS\\Repositories\\IRoomRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-21T17:00:30.141Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "EFBookingRepository.cs",
+              "DocumentMoniker": "C:\\Users\\emmot\\Downloads\\KaraokeWeb\\User\\UserDACS\\UserDACS\\Repositories\\EFBookingRepository.cs",
+              "RelativeDocumentMoniker": "UserDACS\\Repositories\\EFBookingRepository.cs",
+              "ToolTip": "C:\\Users\\emmot\\Downloads\\KaraokeWeb\\User\\UserDACS\\UserDACS\\Repositories\\EFBookingRepository.cs",
+              "RelativeToolTip": "UserDACS\\Repositories\\EFBookingRepository.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAAwAsAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-21T18:04:59.13Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "ICustomerRepository.cs",
+              "DocumentMoniker": "C:\\Users\\emmot\\Downloads\\KaraokeWeb\\User\\UserDACS\\UserDACS\\Repositories\\ICustomerRepository.cs",
+              "RelativeDocumentMoniker": "UserDACS\\Repositories\\ICustomerRepository.cs",
+              "ToolTip": "C:\\Users\\emmot\\Downloads\\KaraokeWeb\\User\\UserDACS\\UserDACS\\Repositories\\ICustomerRepository.cs",
+              "RelativeToolTip": "UserDACS\\Repositories\\ICustomerRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-21T17:55:51.178Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "EFCustomerRepository.cs",
+              "DocumentMoniker": "C:\\Users\\emmot\\Downloads\\KaraokeWeb\\User\\UserDACS\\UserDACS\\Repositories\\EFCustomerRepository.cs",
+              "RelativeDocumentMoniker": "UserDACS\\Repositories\\EFCustomerRepository.cs",
+              "ToolTip": "C:\\Users\\emmot\\Downloads\\KaraokeWeb\\User\\UserDACS\\UserDACS\\Repositories\\EFCustomerRepository.cs",
+              "RelativeToolTip": "UserDACS\\Repositories\\EFCustomerRepository.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAQwCEAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-21T17:58:23.286Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "ApplicationDBContext.cs",
+              "DocumentMoniker": "C:\\Users\\emmot\\Downloads\\KaraokeWeb\\User\\UserDACS\\UserDACS\\Models\\ApplicationDBContext.cs",
+              "RelativeDocumentMoniker": "UserDACS\\Models\\ApplicationDBContext.cs",
+              "ToolTip": "C:\\Users\\emmot\\Downloads\\KaraokeWeb\\User\\UserDACS\\UserDACS\\Models\\ApplicationDBContext.cs",
+              "RelativeToolTip": "UserDACS\\Models\\ApplicationDBContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-21T18:43:44.11Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "20250521184404_Initial.cs",
+              "DocumentMoniker": "C:\\Users\\emmot\\Downloads\\KaraokeWeb\\User\\UserDACS\\UserDACS\\Migrations\\20250521184404_Initial.cs",
+              "RelativeDocumentMoniker": "UserDACS\\Migrations\\20250521184404_Initial.cs",
+              "ToolTip": "C:\\Users\\emmot\\Downloads\\KaraokeWeb\\User\\UserDACS\\UserDACS\\Migrations\\20250521184404_Initial.cs",
+              "RelativeToolTip": "UserDACS\\Migrations\\20250521184404_Initial.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-21T18:44:04.954Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "RoomType.cs",
+              "DocumentMoniker": "C:\\Users\\emmot\\Downloads\\KaraokeWeb\\User\\UserDACS\\UserDACS\\Models\\RoomType.cs",
+              "RelativeDocumentMoniker": "UserDACS\\Models\\RoomType.cs",
+              "ToolTip": "C:\\Users\\emmot\\Downloads\\KaraokeWeb\\User\\UserDACS\\UserDACS\\Models\\RoomType.cs",
+              "RelativeToolTip": "UserDACS\\Models\\RoomType.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-21T16:47:38.019Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "Room.cs",
+              "DocumentMoniker": "C:\\Users\\emmot\\Downloads\\KaraokeWeb\\User\\UserDACS\\UserDACS\\Models\\Room.cs",
+              "RelativeDocumentMoniker": "UserDACS\\Models\\Room.cs",
+              "ToolTip": "C:\\Users\\emmot\\Downloads\\KaraokeWeb\\User\\UserDACS\\UserDACS\\Models\\Room.cs",
+              "RelativeToolTip": "UserDACS\\Models\\Room.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAxwBAAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-21T16:36:57.419Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\emmot\\Downloads\\KaraokeWeb\\User\\UserDACS\\UserDACS\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "UserDACS\\Views\\Home\\Index.cshtml",
+              "ToolTip": "C:\\Users\\emmot\\Downloads\\KaraokeWeb\\User\\UserDACS\\UserDACS\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "UserDACS\\Views\\Home\\Index.cshtml",
+              "ViewState": "AgIAAKAAAAAAAAAAAADwv7cAAAA6AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-19T17:25:13.978Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "RoomImage.cs",
+              "DocumentMoniker": "C:\\Users\\emmot\\Downloads\\KaraokeWeb\\User\\UserDACS\\UserDACS\\Models\\RoomImage.cs",
+              "RelativeDocumentMoniker": "UserDACS\\Models\\RoomImage.cs",
+              "ToolTip": "C:\\Users\\emmot\\Downloads\\KaraokeWeb\\User\\UserDACS\\UserDACS\\Models\\RoomImage.cs",
+              "RelativeToolTip": "UserDACS\\Models\\RoomImage.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-21T16:47:14.109Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "20250521170322_Initial.cs",
+              "DocumentMoniker": "C:\\Users\\emmot\\Downloads\\KaraokeWeb\\User\\UserDACS\\UserDACS\\Migrations\\20250521170322_Initial.cs",
+              "RelativeDocumentMoniker": "UserDACS\\Migrations\\20250521170322_Initial.cs",
+              "ToolTip": "C:\\Users\\emmot\\Downloads\\KaraokeWeb\\User\\UserDACS\\UserDACS\\Migrations\\20250521170322_Initial.cs",
+              "RelativeToolTip": "UserDACS\\Migrations\\20250521170322_Initial.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-21T17:03:23.271Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "EFRoomRepository.cs",
+              "DocumentMoniker": "C:\\Users\\emmot\\Downloads\\KaraokeWeb\\User\\UserDACS\\UserDACS\\Repositories\\EFRoomRepository.cs",
+              "RelativeDocumentMoniker": "UserDACS\\Repositories\\EFRoomRepository.cs",
+              "ToolTip": "C:\\Users\\emmot\\Downloads\\KaraokeWeb\\User\\UserDACS\\UserDACS\\Repositories\\EFRoomRepository.cs",
+              "RelativeToolTip": "UserDACS\\Repositories\\EFRoomRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAUAAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-21T16:44:09.083Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "UserDACS.csproj",
+              "DocumentMoniker": "C:\\Users\\emmot\\Downloads\\KaraokeWeb\\User\\UserDACS\\UserDACS\\UserDACS.csproj",
+              "RelativeDocumentMoniker": "UserDACS\\UserDACS.csproj",
+              "ToolTip": "C:\\Users\\emmot\\Downloads\\KaraokeWeb\\User\\UserDACS\\UserDACS\\UserDACS.csproj",
+              "RelativeToolTip": "UserDACS\\UserDACS.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-05-21T16:38:52.335Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
               "Title": "_Layout.cshtml",
               "DocumentMoniker": "C:\\Users\\emmot\\Downloads\\KaraokeWeb\\User\\UserDACS\\UserDACS\\Views\\Shared\\_Layout.cshtml",
               "RelativeDocumentMoniker": "UserDACS\\Views\\Shared\\_Layout.cshtml",
@@ -34,21 +412,7 @@
               "RelativeToolTip": "UserDACS\\Views\\Shared\\_Layout.cshtml",
               "ViewState": "AgIAAA0AAAAAAAAAAAAgwBcAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-05-19T17:26:20.934Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\emmot\\Downloads\\KaraokeWeb\\User\\UserDACS\\UserDACS\\Views\\Home\\Index.cshtml",
-              "RelativeDocumentMoniker": "UserDACS\\Views\\Home\\Index.cshtml",
-              "ToolTip": "C:\\Users\\emmot\\Downloads\\KaraokeWeb\\User\\UserDACS\\UserDACS\\Views\\Home\\Index.cshtml",
-              "RelativeToolTip": "UserDACS\\Views\\Home\\Index.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAADABAAAUAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-05-19T17:25:13.978Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-19T17:26:20.934Z"
             }
           ]
         }

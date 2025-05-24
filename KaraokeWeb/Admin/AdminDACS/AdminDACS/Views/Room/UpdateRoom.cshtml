@@ -1,0 +1,65 @@
+﻿@model AdminDACS.Models.Room
+
+@{
+    ViewData["Title"] = "Cập nhật thông tin phòng";
+}
+
+<h2 class="text-center mb-4 text-primary">✏️ Cập nhật phòng</h2>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert" id="successAlert">
+        <strong>Thành công!</strong> @TempData["SuccessMessage"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+else
+{
+    <div class="container col-md-6">
+        <form asp-action="UpdateRoom" asp-controller="Room" method="post" class="shadow p-4 rounded bg-light" enctype="multipart/form-data">
+            <input type="hidden" asp-for="MaPhong" />
+
+            <div class="mb-3">
+                <label asp-for="MaPhong" class="form-label">Mã phòng</label>
+                <input asp-for="MaPhong" class="form-control"/>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="TenPhong" class="form-label">Tên phòng</label>
+                <input asp-for="TenPhong" class="form-control" />
+                <span asp-validation-for="TenPhong" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="MaLoaiPhong" class="form-label">Loại phòng</label>
+                <select asp-for="MaLoaiPhong" class="form-select" asp-items="ViewBag.RoomTypeList">
+                    <option value="">-- Chọn loại phòng --</option>
+                </select>
+                <span asp-validation-for="MaLoaiPhong" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Gia" class="form-label">Giá phòng (VNĐ)</label>
+                <input asp-for="Gia" class="form-control" type="number" min="0" step="1000" />
+                <span asp-validation-for="Gia" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="SucChua" class="form-label">Sức chứa (người)</label>
+                <input asp-for="SucChua" class="form-control" type="number" min="1" step="1" />
+                <span asp-validation-for="SucChua" class="text-danger"></span>
+            </div>
+
+            <div class="d-flex justify-content-between">
+                <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
+                <a asp-action="RoomList" asp-controller="Room" class="btn btn-secondary">Hủy</a>
+            </div>
+        </form>
+    </div>
+}
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
