@@ -1,0 +1,209 @@
+﻿@model AdminDACS.Models.MenuCreateViewModel
+
+@{
+    ViewData["Title"] = "Thêm Món Ăn";
+
+    var options = new List<(string value, string text)> { ("Food", "Đồ ăn"), ("Beverage", "Nước uống") };
+}
+
+<h2>@ViewData["Title"]</h2>
+
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-danger">
+        <ul>
+            @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+            {
+                <li>@error.ErrorMessage</li>
+            }
+        </ul>
+    </div>
+}
+
+<form asp-action="AddMenu" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label>Tên món</label>
+        <input asp-for="TenMon" class="form-control" />
+        <span asp-validation-for="TenMon" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Mô tả</label>
+        <textarea asp-for="MoTa" class="form-control"></textarea>
+        <span asp-validation-for="MoTa" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Giá</label>
+        <input asp-for="Gia" class="form-control" type="number" step="0.01" />
+        <span asp-validation-for="Gia" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Loại món</label>
+        <select asp-for="LoaiMon" class="form-control">
+            @foreach (var opt in options)
+            {
+                if (Model.LoaiMon == opt.value)
+                {
+                    <option value="@opt.value" selected>@opt.text</option>
+                }
+                else
+                {
+                    <option value="@opt.value">@opt.text</option>
+                }
+            }
+        </select>
+        <span asp-validation-for="LoaiMon" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Ảnh món ăn</label>
+        <input asp-for="ImageFile" type="file" class="form-control" />
+        <span asp-validation-for="ImageFile" class="text-danger"></span>
+    </div>
+
+    <hr />
+    <h4>Thông tin nguyên liệu</h4>
+
+    <div class="form-group">
+        <label>Tên nguyên liệu</label>
+        <input asp-for="TenNL" class="form-control" />
+        <span asp-validation-for="TenNL" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Giá nguyên liệu</label>
+        <input asp-for="GiaNL" class="form-control" type="number" step="0.01" />
+        <span asp-validation-for="GiaNL" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Số lượng</label>
+        <input asp-for="SL" class="form-control" type="number" />
+        <span asp-validation-for="SL" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-success">Thêm món</button>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+<style>
+    form {
+        animation: fadeIn 0.6s ease-in-out;
+        max-width: 600px;
+        margin: 20px auto;
+        padding: 20px;
+        border-radius: 12px;
+        background-color: #fefefe;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+        transition: all 0.3s ease;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    input[type="file"],
+    select,
+    textarea {
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: #5dade2;
+            box-shadow: 0 0 5px rgba(93, 173, 226, 0.7);
+        }
+
+    h2 {
+        text-align: center;
+        font-weight: 800;
+        margin-bottom: 25px;
+        background: linear-gradient(90deg, #1abc9c, #16a085);
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+        font-size: 2.2rem;
+        animation: slideIn 0.7s ease;
+    }
+
+    .btn-success {
+        background-color: #27ae60;
+        border: none;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        font-weight: bold;
+    }
+
+        .btn-success:hover {
+            background-color: #1e8449;
+            transform: translateY(-2px);
+        }
+
+    .alert-danger {
+        animation: shake 0.4s ease-in-out;
+    }
+
+    keyframes fadeIn {
+        from
+
+    {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    }
+
+    keyframes slideIn {
+        from
+
+    {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    }
+
+    keyframes shake {
+        0%
+
+    {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-5px);
+    }
+
+    50% {
+        transform: translateX(5px);
+    }
+
+    75% {
+        transform: translateX(-5px);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+
+    }
+</style>
+

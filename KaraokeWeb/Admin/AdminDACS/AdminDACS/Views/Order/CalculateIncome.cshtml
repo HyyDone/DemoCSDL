@@ -1,0 +1,55 @@
+﻿@model IncomeViewModel
+
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tính toán thu nhập</title>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Tính Toán Thu Nhập</h2>
+
+        <div class="section">
+            <h3>Danh sách đơn hàng đã thanh toán</h3>
+            @if (Model.Orders != null && Model.Orders.Any())
+            {
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Mã Đơn Hàng</th>
+                            <th>Tổng Tiền</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var order in Model.Orders)
+                        {
+                            <tr>
+                                <td>@order.OrderId</td>
+                                <td>@order.TotalAmount.ToString("C2")</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <p>Không có đơn hàng đã thanh toán nào.</p>
+            }
+
+            <div class="total-income">
+                <p>Thu Nhập Tổng Cộng: @Model.TotalIncome.ToString("C2")</p>
+            </div>
+        </div>
+
+        <!-- Nút tính toán thu nhập -->
+        <div class="btn-container">
+            <a href="@Url.Action("GetPaidOrders", "Order")" class="btn btn-success">Trở về</a>
+        </div>
+    </div>
+</body>
+
+</html>

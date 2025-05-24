@@ -7,11 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Repositories\" />
-    <Folder Include="Views\Menu\" />
     <Folder Include="Views\Income\" />
     <Folder Include="Views\Expense\" />
-    <Folder Include="Views\Warehouse\" />
     <Folder Include="Views\Pay\" />
   </ItemGroup>
 
