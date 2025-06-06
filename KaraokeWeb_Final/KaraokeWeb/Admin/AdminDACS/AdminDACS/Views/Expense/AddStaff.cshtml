@@ -1,0 +1,183 @@
+﻿@model AdminDACS.Models.Staff
+
+@{
+    ViewBag.Title = "Thêm Nhân Viên";
+}
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f4f6f8;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        keyframes fadeIn {
+            from
+
+        {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        }
+
+        header h2 {
+            text-align: center;
+            color: #2e7d32;
+            font-size: 28px;
+            margin-bottom: 30px;
+        }
+
+        .form-container {
+            background: #fff;
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 30px 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            animation: fadeInUp 0.6s ease-in-out;
+        }
+
+        keyframes fadeInUp {
+            from
+
+        {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="number"] {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #4caf50;
+            box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+        }
+
+        .btn {
+            padding: 10px 20px;
+            font-weight: bold;
+            border-radius: 6px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .btn-submit {
+            background-color: #4caf50;
+            color: white;
+            margin-right: 10px;
+        }
+
+            .btn-submit:hover {
+                background-color: #388e3c;
+                transform: scale(1.05);
+            }
+
+        .btn-cancel {
+            background-color: #f44336;
+            color: white;
+        }
+
+            .btn-cancel:hover {
+                background-color: #d32f2f;
+                transform: scale(1.05);
+            }
+
+        .alert-warning {
+            background-color: #fff3cd;
+            color: #856404;
+            padding: 12px 15px;
+            border: 1px solid #ffeeba;
+            border-radius: 6px;
+            margin-bottom: 20px;
+        }
+    </style>
+
+</head>
+<body>
+    <header>
+        <h2>@ViewBag.Title</h2>
+    </header>
+
+    <div class="form-container">
+        @if (ViewBag.ErrorMessage != null)
+        {
+            <div class="alert-warning">
+                @ViewBag.ErrorMessage
+            </div>
+        }
+        <form asp-action="AddStaff" method="post">
+            <div class="form-group">
+                <label for="MaNhanVien">Mã Nhân Viên</label>
+                <input type="text" id="MaNhanVien" name="MaNhanVien" value="@Model?.MaNhanVien" required />
+            </div>
+
+            <div class="form-group">
+                <label for="Ten">Tên Nhân Viên</label>
+                <input type="text" id="Ten" name="Ten" value="@Model?.Ten" required />
+            </div>
+
+            <div class="form-group">
+                <label for="SDT_NhanVien">Số Điện Thoại</label>
+                <input type="text" id="SDT_NhanVien" name="SDT_NhanVien" value="@Model?.SDT_NhanVien" required />
+            </div>
+
+            <div class="form-group">
+                <label for="Email">Email</label>
+                <input type="email" id="Email" name="Email" value="@Model?.Email" required />
+            </div>
+
+            <div class="form-group">
+                <label for="Luong">Lương</label>
+                <input type="number" id="Luong" name="Luong" value="@Model?.Luong" step="0.01" required />
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-submit">Thêm Nhân Viên</button>
+                <a href="@Url.Action("ShowStaff", "Expense")" class="btn btn-cancel">Hủy</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,314 @@
+﻿@model IEnumerable<UserDACS.Models.Menu>
+
+@{
+    ViewData["Title"] = "Menu";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="text-light">Menu</h2>
+        <input type="text" id="searchBox" class="form-control w-50" placeholder="Tìm tên món..." />
+    </div>
+
+    <div id="menuList" class="row g-3">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-4">
+                <div class="card h-100 bg-dark text-white border-light">
+                    <img src="@Url.Content("~/" + item.ImageUrl)" class="card-img-top" alt="@item.TenMon" style="height:200px; object-fit:cover;" />
+                    <div class="card-body">
+                        <h5 class="card-title">@item.TenMon</h5>
+                        <p class="card-text">@item.MoTa</p>
+                        <p class="card-text fw-bold">Giá: @item.Gia.ToString("N0") VNĐ</p>
+                        <div class="d-flex justify-content-between">
+                            <button class="btn btn-warning btn-sm" onclick="orderItem('@item.MaMon')">Đặt món</button>
+                            <button class="btn btn-info btn-sm" title="Thông tin món"
+                                    onclick="window.location.href='@Url.Action("InforFood", "Menu", new { maMon = item.MaMon })'">
+                                <i class="bi bi-info-circle"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<!-- Nút order cố định -->
+<button class="btn btn-danger rounded-circle position-fixed bottom-0 end-0 m-4 shadow" style="width:60px; height:60px;" title="Order món">
+    <i class="bi bi-cart3 fs-4"></i>
+</button>
+<!-- Modal 1: Nhập số điện thoại và chọn phòng -->
+<div class="modal fade" id="phoneModal" tabindex="-1" aria-labelledby="phoneModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content bg-dark text-white">
+            <div class="modal-header">
+                <h5 class="modal-title" id="phoneModalLabel">Nhập số điện thoại</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label for="phoneInput" class="form-label">Số điện thoại</label>
+                    <input type="text" id="phoneInput" class="form-control" />
+                </div>
+                <div class="mb-3">
+                    <label for="roomSelect" class="form-label">Chọn phòng</label>
+                    <select id="roomSelect" class="form-select" disabled></select> <!-- đổi readonly thành disabled -->
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="confirmPhoneBtn">Xác nhận</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal 2: Hiển thị món tạm thời -->
+<div class="modal fade" id="orderItemsModal" tabindex="-1" aria-labelledby="orderItemsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content bg-dark text-white">
+            <div class="modal-header">
+                <h5 class="modal-title" id="orderItemsModalLabel">Món đã chọn</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body" id="orderItemsContent">
+                <!-- Dữ liệu món sẽ được load bằng JS -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" id="confirmOrderBtn">Xác nhận đặt món</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Biến lưu trạng thái số điện thoại và phòng đã chọn
+        let savedPhone = null;
+        let savedRoom = null;
+
+        document.getElementById("searchBox").addEventListener("input", function () {
+            const keyword = this.value;
+
+            fetch(`/Menu/SearchMenu?term=${encodeURIComponent(keyword)}`)
+                .then(res => res.json())
+                .then(data => {
+                    const container = document.getElementById("menuList");
+                    container.innerHTML = "";
+
+                    data.forEach(item => {
+                        container.innerHTML += `
+                            <div class="col-md-4">
+                                <div class="card h-100 bg-dark text-white border-light">
+                                    <img src="/${item.imageUrl}" class="card-img-top" alt="${item.tenMon}" style="height:200px; object-fit:cover;" />
+                                    <div class="card-body">
+                                        <h5 class="card-title">${item.tenMon}</h5>
+                                        <p class="card-text">${item.moTa}</p>
+                                        <p class="card-text fw-bold">Giá: ${item.gia.toLocaleString()} VNĐ</p>
+                                        <div class="d-flex justify-content-between">
+                                            <button class="btn btn-warning btn-sm" onclick="orderItem('${item.maMon}')">Đặt món</button>
+                                            <button class="btn btn-info btn-sm" title="Thông tin món"
+                                                    onclick="window.location.href='/Menu/InforFood?maMon=${item.maMon}'">
+                                                <i class="bi bi-info-circle"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                    });
+                })
+                .catch(err => {
+                    console.error('Lỗi khi tìm kiếm món:', err);
+                });
+        });
+
+        function orderItem(maMon) {
+            const maPhong = document.getElementById("roomSelect").value;
+            if (!maPhong || maPhong === "Vui lòng nhập SĐT...") {
+                alert("Vui lòng chọn phòng trước khi đặt món.");
+                return;
+            }
+
+            fetch(`/Menu/AddItemToOrder?maPhong=${encodeURIComponent(maPhong)}&maMon=${encodeURIComponent(maMon)}`, {
+                method: "POST"
+            })
+            .then(res => {
+                if (res.ok) {
+                    alert("Đã thêm món vào đơn hàng!");
+                } else {
+                    throw new Error("Thêm món thất bại.");
+                }
+            })
+            .catch(err => {
+                console.error(err);
+                alert("Có lỗi xảy ra khi đặt món.");
+            });
+        }
+
+        document.querySelector(".btn-danger").addEventListener("click", function () {
+            const phoneInput = document.getElementById("phoneInput");
+            const roomSelect = document.getElementById("roomSelect");
+
+            if (savedPhone) {
+                phoneInput.value = savedPhone;
+
+                fetch(`/Menu/GetBookedRooms?phone=${encodeURIComponent(savedPhone)}`)
+                    .then(res => res.json())
+                    .then(data => {
+                        roomSelect.innerHTML = "";
+
+                        if (data.length === 0) {
+                            roomSelect.innerHTML = "<option>Không có phòng nào.</option>";
+                            roomSelect.disabled = true;
+                            return;
+                        }
+
+                        data.forEach(r => {
+                            roomSelect.innerHTML += `<option value="${r.maPhong}">${r.tenPhong}</option>`;
+                        });
+                        roomSelect.disabled = false;
+
+                        if (savedRoom && data.some(r => r.maPhong === savedRoom)) {
+                            roomSelect.value = savedRoom;
+                        } else {
+                            roomSelect.value = data[0].maPhong;
+                            savedRoom = data[0].maPhong;
+                        }
+                    })
+                    .catch(err => {
+                        console.error("Lỗi khi lấy danh sách phòng:", err);
+                        roomSelect.innerHTML = "<option>Lỗi khi tải phòng.</option>";
+                        roomSelect.disabled = true;
+                    });
+            } else {
+                phoneInput.value = "";
+                roomSelect.innerHTML = "<option>Vui lòng nhập SĐT...</option>";
+                roomSelect.disabled = true;
+            }
+
+            new bootstrap.Modal(document.getElementById("phoneModal")).show();
+        });
+
+        document.getElementById("confirmPhoneBtn").addEventListener("click", function () {
+            const phone = document.getElementById("phoneInput").value.trim();
+            if (!phone) {
+                alert("Vui lòng nhập số điện thoại.");
+                return;
+            }
+
+            fetch(`/Menu/GetBookedRooms?phone=${encodeURIComponent(phone)}`)
+                .then(res => res.json())
+                .then(data => {
+                    const roomSelect = document.getElementById("roomSelect");
+                    roomSelect.innerHTML = "";
+
+                    if (data.length === 0) {
+                        roomSelect.innerHTML = "<option>Không có phòng nào.</option>";
+                        roomSelect.disabled = true;
+                        return;
+                    }
+
+                    data.forEach(r => {
+                        roomSelect.innerHTML += `<option value="${r.maPhong}">${r.tenPhong}</option>`;
+                    });
+                    roomSelect.disabled = false;
+
+                    if (savedRoom && data.some(r => r.maPhong === savedRoom)) {
+                        roomSelect.value = savedRoom;
+                    } else {
+                        roomSelect.value = data[0].maPhong;
+                        savedRoom = data[0].maPhong;
+                    }
+
+                    savedPhone = phone;
+                    savedRoom = roomSelect.value;
+
+                    fetch(`/Menu/GetTempOrderItems?maPhong=${encodeURIComponent(roomSelect.value)}`)
+                        .then(res => res.json())
+                        .then(items => {
+                            const content = document.getElementById("orderItemsContent");
+                            if (items.length === 0) {
+                                content.innerHTML = "<p>Chưa có món nào được chọn.</p>";
+                            } else {
+                                let rows = items.map(i => `
+                                    <tr>
+                                        <td>${i.tenMon}</td>
+                                        <td>${i.quantity}</td>
+                                        <td>${i.unitPrice.toLocaleString()}</td>
+                                        <td>${(i.quantity * i.unitPrice).toLocaleString()}</td>
+                                    </tr>
+                                `).join('');
+
+                                let total = items.reduce((sum, i) => sum + i.quantity * i.unitPrice, 0);
+
+                                content.innerHTML = `
+                                    <table class="table table-bordered table-dark text-white">
+                                        <thead>
+                                            <tr>
+                                                <th>Món</th>
+                                                <th>Số lượng</th>
+                                                <th>Giá</th>
+                                                <th>Thành tiền</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>${rows}</tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <td colspan="3" class="text-end fw-bold">Tổng tiền</td>
+                                                <td class="fw-bold">${total.toLocaleString()} VNĐ</td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                `;
+                            }
+
+                            bootstrap.Modal.getInstance(document.getElementById("phoneModal")).hide();
+                            new bootstrap.Modal(document.getElementById("orderItemsModal")).show();
+                        });
+                })
+                .catch(err => {
+                    console.error("Lỗi khi lấy danh sách phòng:", err);
+                    alert("Lỗi khi tìm phòng.");
+                });
+        });
+
+        // Cập nhật savedRoom khi thay đổi phòng trong select
+        document.getElementById("roomSelect").addEventListener("change", function () {
+            savedRoom = this.value;
+        });
+
+                document.getElementById("confirmOrderBtn").addEventListener("click", function () {
+            if (!savedRoom) {
+                alert("Vui lòng chọn phòng trước khi xác nhận đặt món.");
+                return;
+            }
+
+            fetch(`/Menu/ConfirmOrder?maPhong=${encodeURIComponent(savedRoom)}`, {
+                method: "POST"
+            })
+            .then(res => {
+                if (res.ok) {
+                    alert("Đặt món thành công!");
+                    // Xóa nội dung trong modal
+                    document.getElementById("orderItemsContent").innerHTML = "<p>Chưa có món nào được chọn.</p>";
+                    savedRoom = null;
+                    savedPhone = null;
+
+                    // Đóng modal orderItemsModal
+                    bootstrap.Modal.getInstance(document.getElementById("orderItemsModal")).hide();
+                } else {
+                    throw new Error("Xác nhận đặt món thất bại.");
+                }
+            })
+            .catch(err => {
+                console.error(err);
+                alert("Có lỗi xảy ra khi xác nhận đặt món.");
+            });
+        });
+    </script>
+
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
+}

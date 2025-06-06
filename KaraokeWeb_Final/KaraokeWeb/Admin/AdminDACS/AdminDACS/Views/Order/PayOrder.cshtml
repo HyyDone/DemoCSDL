@@ -1,0 +1,217 @@
+﻿@model IEnumerable<AdminDACS.Models.Order>
+
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thanh Toán</title>
+</head>
+
+@{
+        ViewData["Title"] = "Danh sách đơn hàng chưa thanh toán";
+}
+
+<style>
+    body {
+        font-family: 'Segoe UI', sans-serif;
+        background: #f9f9f9;
+        margin: 0;
+        padding: 20px;
+        animation: fadeIn 1s ease-in-out;
+    }
+
+    h2 {
+        text-align: center;
+        color: #333;
+    }
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        max-width: 1000px;
+        margin: auto;
+    }
+
+    .details-container {
+        background: #fff;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        animation: slideIn 0.6s ease-in-out;
+        transition: transform 0.3s ease;
+    }
+
+        .details-container:hover {
+            transform: scale(1.01);
+        }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+    }
+
+    th, td {
+        padding: 10px;
+        text-align: center;
+        border-bottom: 1px solid #eee;
+    }
+
+    th {
+        background-color: #f0f0f0;
+    }
+
+    .btn-container {
+        margin-top: 15px;
+        text-align: right;
+    }
+
+    .btn-pay {
+        background-color: #007bff;
+        color: white;
+        padding: 8px 16px;
+        border: none;
+        text-decoration: none;
+        border-radius: 6px;
+        transition: background-color 0.3s ease;
+    }
+
+        .btn-pay:hover {
+            background-color: #0056b3;
+        }
+
+    keyframes fadeIn {
+        from
+
+    {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+
+    }
+
+    keyframes slideIn {
+        from
+
+    {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    }
+</style>
+
+
+<body>
+    <header>
+        <h2>@ViewData["Title"]</h2>
+    </header>
+
+    <div class="container">
+        @foreach (var order in Model.Where(o => !o.IsPaid).OrderBy(o => o.OrderId))
+        {
+            <div class="details-container">
+                <h3>Đơn hàng #@order.OrderId</h3>
+                <p><strong>Ngày tạo:</strong> @order.OrderDate.ToString("dd/MM/yyyy")</p>
+                <p><strong>Mã Phòng:</strong> @order.MaPhong</p>
+                <p>
+                    <strong>Tổng tiền:</strong> @(order.TotalAmount.HasValue? order.TotalAmount.Value.ToString("C2") : "0đ")
+                </p>
+                <p><strong>Trạng thái thanh toán:</strong> Chưa thanh toán</p>
+
+                <h4>Chi tiết các món trong đơn hàng:</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Mã món</th>
+                            <th>Tên món</th>
+                            <th>Số lượng</th>
+                            <th>Đơn giá</th>
+                            <th>Tổng giá</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (order.OrderDetails != null && order.OrderDetails.Any())
+                        {
+                            @foreach (var detail in order.OrderDetails)
+                            {
+                                <tr>
+                                    <td>@detail.MaMon</td>
+                                    <td>@detail.Menu?.TenMon</td>
+                                    <td>@detail.Quantity</td>
+                                    <td>@detail.UnitPrice.ToString("C2")</td>
+                                    <td>@(detail.Quantity* detail.UnitPrice)</td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr>
+                                <td colspan="5">Không có chi tiết món trong đơn hàng này.</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <button type="button" class="btn btn-pay"
+                        onclick="openModal(@order.OrderId, '@order.OrderDate.ToString("yyyy-MM-ddTHH:mm:ss")', @order.Room?.Gia, @order.OrderDetails.Sum(d => d.Quantity * d.UnitPrice))">
+                    Thanh toán
+                </button>
+            </div>
+        }
+    </div>
+    <div id="paymentModal" class="modal" style="display:none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.4);">
+        <div class="modal-content" style="background-color: #fff; margin: 10% auto; padding: 20px; border-radius: 10px; width: 500px; position: relative;">
+            <span onclick="closeModal()" style="position: absolute; top: 10px; right: 20px; font-size: 20px; cursor: pointer;">&times;</span>
+            <h3>Chi tiết thanh toán</h3>
+            <p><strong>Đơn hàng #</strong> <span id="modal-orderId"></span></p>
+            <p><strong>Giờ đặt phòng:</strong> <span id="modal-orderDate"></span></p>
+            <p><strong>Thời gian sử dụng:</strong> <span id="modal-duration"></span> giờ</p>
+            <p><strong>Giá phòng/giờ:</strong> <span id="modal-roomPrice"></span></p>
+            <p><strong>Tổng tiền món ăn:</strong> <span id="modal-totalFood"></span></p>
+            <p><strong>Tổng thanh toán:</strong> <span id="modal-totalAmount"></span></p>
+
+            <form id="paymentForm" method="post" action="@Url.Action("GetOrderById", "Order")">
+                <input type="hidden" name="orderId" id="modal-hiddenOrderId" />
+                <button type="submit" class="btn btn-pay">Xác nhận thanh toán</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function openModal(orderId, orderDate, roomPrice, foodTotal) {
+            const now = new Date();
+            const start = new Date(orderDate);
+            const durationHours = Math.max(1, Math.round((now - start) / 36e5));
+
+            const total = (durationHours * roomPrice) + foodTotal;
+
+            document.getElementById('modal-orderId').textContent = orderId;
+            document.getElementById('modal-orderDate').textContent = start.toLocaleString();
+            document.getElementById('modal-duration').textContent = durationHours;
+            document.getElementById('modal-roomPrice').textContent = roomPrice.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+            document.getElementById('modal-totalFood').textContent = foodTotal.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+            document.getElementById('modal-totalAmount').textContent = total.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+
+            document.getElementById('modal-hiddenOrderId').value = orderId;
+
+            document.getElementById('paymentModal').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('paymentModal').style.display = 'none';
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,155 @@
+﻿@model IEnumerable<AdminDACS.Models.ElectricityBill>
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh Sách Hóa Đơn Điện</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9fafb;
+            margin: 20px;
+            color: #333;
+        }
+
+        header h2 {
+            text-align: center;
+            color: #007bff;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .alert-warning {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 12px 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .bill-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill,minmax(280px,1fr));
+            gap: 20px;
+        }
+
+        .bill-card {
+            background: white;
+            padding: 18px 24px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgb(0 0 0 / 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: default;
+            user-select: none;
+        }
+
+            .bill-card:hover {
+                transform: translateY(-6px);
+                box-shadow: 0 12px 30px rgb(0 0 0 / 0.15);
+            }
+
+        .bill-title {
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+            color: #007bff;
+        }
+
+        .bill-info {
+            font-size: 0.95rem;
+            margin-bottom: 6px;
+            color: #555;
+        }
+
+        form {
+            margin-top: 10px;
+        }
+
+        button.btn {
+            background-color: #dc3545;
+            border: none;
+            color: white;
+            padding: 8px 16px;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+            button.btn:hover {
+                background-color: #b02a37;
+            }
+
+        a.btn-add {
+            display: inline-block;
+            margin-top: 30px;
+            background-color: #198754;
+            color: white;
+            padding: 12px 26px;
+            font-weight: 600;
+            border-radius: 10px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+            a.btn-add:hover {
+                background-color: #146c43;
+            }
+    </style>
+
+</head>
+<body>
+    <header>
+        <h2>Danh Sách Hóa Đơn Điện</h2>
+    </header>
+
+    <div class="container">
+        @if (ViewBag.ErrorMessage != null)
+        {
+            <div class="alert-warning">
+                @ViewBag.ErrorMessage
+            </div>
+        }
+        else
+        {
+            <div class="bill-grid">
+                @foreach (var bill in Model)
+                {
+                    <div class="bill-card">
+                        <div class="bill-title">Hóa Đơn @bill.MaBillElec</div>
+                        <div class="bill-info"><strong>Ngày Xuất:</strong> @bill.Ngay.ToString("dd/MM/yyyy")</div>
+                        <div class="bill-info"><strong>Số Tiền:</strong> @bill.SoTien.ToString("C")</div>
+
+                        <!-- Form Xóa -->
+                        <form asp-action="DeleteElecBill" asp-controller="Expense" method="post" style="display:inline;">
+                            <input type="hidden" name="id" value="@bill.MaBillElec" />
+                            <button type="submit" class="btn btn-red" onclick="return confirm('Bạn có chắc chắn muốn xóa hóa đơn này?');">Xóa</button>
+                        </form>
+                    </div>
+                }
+            </div>
+            <a href="@Url.Action("AddBillElec", "Expense")" class="btn btn-add">Thêm Hóa Đơn Điện</a>
+        }
+    </div>
+    <script>
+        document.querySelectorAll('form button.btn').forEach(button => {
+          button.addEventListener('click', function(event) {
+            const confirmed = confirm('Bạn có chắc chắn muốn xóa hóa đơn này?');
+            if (!confirmed) {
+              event.preventDefault();
+            }
+          });
+        });
+    </script>
+
+</body>
+</html>

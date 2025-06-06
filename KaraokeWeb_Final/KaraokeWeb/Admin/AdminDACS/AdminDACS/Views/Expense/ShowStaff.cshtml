@@ -1,0 +1,180 @@
+﻿@model IEnumerable<AdminDACS.Models.Staff>
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh Sách Nhân Viên</title>
+    <style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f0f4f8;
+        margin: 0;
+        padding: 20px;
+        color: #333;
+    }
+
+    header h2 {
+        text-align: center;
+        font-size: 32px;
+        color: #2e7d32;
+        margin-bottom: 30px;
+        opacity: 0;
+        animation: fadeInDown 0.7s ease forwards;
+    }
+
+    keyframes fadeInDown {
+        from {
+            opacity: 0;
+            transform: translateY(-30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .container {
+        max-width: 960px;
+        margin: 0 auto;
+    }
+
+    .alert-warning {
+        padding: 15px;
+        background-color: #fff3cd;
+        border: 1px solid #ffeeba;
+        border-radius: 8px;
+        color: #856404;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .staff-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+    }
+
+    .staff-card {
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+        transition: all 0.3s ease;
+        animation: fadeInUp 0.6s ease both;
+    }
+
+    .staff-card:hover {
+        box-shadow: 0 6px 16px rgba(46, 125, 50, 0.2);
+        transform: translateY(-5px);
+    }
+
+    keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .staff-title {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 12px;
+        color: #2e7d32;
+    }
+
+    .staff-info {
+        font-size: 15px;
+        margin-bottom: 6px;
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 8px 14px;
+        margin-top: 10px;
+        font-size: 14px;
+        font-weight: bold;
+        text-decoration: none;
+        border-radius: 6px;
+        color: #fff;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .btn-green {
+        background-color: #2e7d32;
+        margin-right: 8px;
+    }
+
+    .btn-green:hover {
+        background-color: #1b5e20;
+        transform: scale(1.05);
+    }
+
+    .btn-red {
+        background-color: #d32f2f;
+        border: none;
+    }
+
+    .btn-red:hover {
+        background-color: #b71c1c;
+        transform: scale(1.05);
+    }
+
+    .btn-add {
+        background-color: #1565c0;
+        padding: 12px 22px;
+        margin-top: 30px;
+        display: inline-block;
+    }
+
+    .btn-add:hover {
+        background-color: #0d47a1;
+        transform: scale(1.05);
+    }
+</style>
+
+</head>
+<body>
+    <header>
+        <h2>Danh Sách Nhân Viên</h2>
+    </header>
+
+    <div class="container">
+        @if (ViewBag.ErrorMessage != null)
+        {
+            <div class="alert-warning">
+                @ViewBag.ErrorMessage
+            </div>
+        }
+        else
+        {
+            <div class="staff-grid">
+                @foreach (var staff in Model)
+                {
+                    <div class="staff-card">
+                        <div class="staff-title">@staff.Ten</div>
+                        <div class="staff-info"><strong>Mã NV:</strong> @staff.MaNhanVien</div>
+                        <div class="staff-info"><strong>SDT:</strong> @staff.SDT_NhanVien</div>
+                        <div class="staff-info"><strong>Email:</strong> @staff.Email</div>
+                        <div class="staff-info"><strong>Lương:</strong> @staff.Luong.ToString("C")</div>
+
+                        <a href="@Url.Action("EditWage", "Expense", new { id = staff.MaNhanVien })" class="btn btn-green">Sửa lương</a>
+
+                        <form asp-action="DeleteStaff" asp-controller="Expense" method="post">
+                            <input type="hidden" name="id" value="@staff.MaNhanVien" />
+                            <button type="submit" class="btn btn-red" onclick="return confirm('Bạn có chắc chắn muốn xóa nhân viên này?');">Xóa</button>
+                        </form>
+                    </div>
+                }
+            </div>
+
+            <!-- Nút Thêm Nhân Viên -->
+            <a href="@Url.Action("AddStaff", "Expense")" class="btn btn-add">Thêm Nhân Viên</a>
+        }
+    </div>
+</body>
+</html>

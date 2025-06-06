@@ -1,0 +1,186 @@
+﻿@model AdminDACS.Models.ElectricityBill
+
+@{
+    ViewData["Title"] = "Thêm Hóa Đơn Điện";
+}
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        keyframes fadeIn {
+            from
+
+        {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        }
+
+        header h2 {
+            text-align: center;
+            color: #0d6efd;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+
+        .container {
+            max-width: 460px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+            transition: box-shadow 0.3s ease;
+        }
+
+            .container:hover {
+                box-shadow: 0 12px 40px rgba(13, 110, 253, 0.3);
+            }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: #444;
+        }
+
+        input[type="text"],
+        input[type="date"],
+        input[type="number"] {
+            width: 100%;
+            padding: 10px 14px;
+            font-size: 16px;
+            border: 1.5px solid #ced4da;
+            border-radius: 8px;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        input:focus {
+            border-color: #0d6efd;
+            box-shadow: 0 0 8px rgba(13, 110, 253, 0.4);
+            outline: none;
+        }
+
+        .text-danger {
+            color: #dc3545;
+            font-size: 0.9rem;
+            margin-top: 4px;
+            display: block;
+        }
+
+        .btn-group {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 12px 22px;
+            border-radius: 8px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            user-select: none;
+            transition: background-color 0.3s ease, transform 0.15s ease;
+        }
+
+        .btn-primary {
+            background-color: #0d6efd;
+            color: white;
+        }
+
+            .btn-primary:hover {
+                background-color: #0b5ed7;
+                transform: scale(1.05);
+            }
+
+        .btn-secondary {
+            background-color: #6c757d;
+            color: white;
+        }
+
+            .btn-secondary:hover {
+                background-color: #5c636a;
+                transform: scale(1.05);
+            }
+    </style>
+
+</head>
+<body>
+    <header>
+        <h2>Thêm Hóa Đơn Điện</h2>
+    </header>
+
+    <div class="container">
+        <form asp-action="AddBillElec" method="post">
+            @Html.AntiForgeryToken()
+
+            <div class="form-group">
+                <label asp-for="MaBillElec">Mã Hóa Đơn</label>
+                <input asp-for="MaBillElec" />
+                <span asp-validation-for="MaBillElec" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Ngay">Ngày Xuất Hóa Đơn</label>
+                <input asp-for="Ngay" type="date" />
+                <span asp-validation-for="Ngay" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="SoTien">Số Tiền</label>
+                <input asp-for="SoTien" />
+                <span asp-validation-for="SoTien" class="text-danger"></span>
+            </div>
+
+            <div class="btn-group">
+                <button type="submit" class="btn btn-primary">Lưu Hóa Đơn</button>
+                <a asp-action="ShowElecBill" class="btn btn-secondary">Quay Lại</a>
+            </div>
+        </form>
+    </div>
+
+    @section Scripts {
+        <partial name="_ValidationScriptsPartial" />
+    }
+    <script>
+        document.querySelector("form").addEventListener("submit", function (e) {
+            const inputNgay = document.querySelector("[name='Ngay']");
+            const ngayValue = new Date(inputNgay.value);
+            const today = new Date();
+
+            if (ngayValue.getFullYear() > today.getFullYear() ||
+                (ngayValue.getFullYear() === today.getFullYear() && ngayValue.getMonth() > today.getMonth())) {
+                alert("Tháng trong ngày hóa đơn không được lớn hơn tháng hiện tại.");
+                e.preventDefault(); // Ngăn gửi form
+            }
+        });
+    </script>
+
+</body>
+</html>

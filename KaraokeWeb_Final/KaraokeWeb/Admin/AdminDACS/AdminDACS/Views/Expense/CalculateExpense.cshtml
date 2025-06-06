@@ -1,0 +1,56 @@
+﻿@model Tuple<List<AdminDACS.Models.Staff>, List<AdminDACS.Models.ElectricityBill>, List<AdminDACS.Models.WaterBill>>
+
+@{
+    var staffList = Model.Item1;
+    var elecBills = Model.Item2;
+    var waterBills = Model.Item3;
+
+    decimal totalSalary = staffList.Sum(s => s.Luong);
+    decimal latestElec = elecBills.OrderByDescending(e => e.Ngay).FirstOrDefault()?.SoTien ?? 0;
+    decimal latestWater = waterBills.OrderByDescending(w => w.Ngay).FirstOrDefault()?.SoTien ?? 0;
+
+    decimal totalExpense = totalSalary + latestElec + latestWater;
+}
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Tính toán chi tiêu</title>
+
+</head>
+<body>
+    <header>
+        <h2>Tổng Chi Tiêu</h2>
+    </header>
+
+    <div class="container">
+        <div class="expense-summary">
+            <table>
+                <tr>
+                    <th>Khoản mục</th>
+                    <th>Số tiền</th>
+                </tr>
+                <tr>
+                    <td>Tổng lương nhân viên</td>
+                    <td>@totalSalary.ToString("N0") đ</td>
+                </tr>
+                <tr>
+                    <td>Hóa đơn điện (mới nhất)</td>
+                    <td>@latestElec.ToString("N0") đ</td>
+                </tr>
+                <tr>
+                    <td>Hóa đơn nước (mới nhất)</td>
+                    <td>@latestWater.ToString("N0") đ</td>
+                </tr>
+                <tr>
+                    <td><strong>Tổng chi tiêu</strong></td>
+                    <td><strong>@totalExpense.ToString("N0") đ</strong></td>
+                </tr>
+            </table>
+
+            <a href="@Url.Action("Index", "Home")" class="back-btn">Quay về trang chủ</a>
+        </div>
+    </div>
+</body>
+</html>

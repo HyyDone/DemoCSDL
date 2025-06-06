@@ -1,0 +1,308 @@
+﻿@model IEnumerable<AdminDACS.Models.ExpenseDTO>
+
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi Tiết Chi Phí</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f6f8;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        .expense-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 12px;
+            position: relative;
+            display: inline-block;
+            animation: fadeInUp 0.6s ease-in-out;
+            transition: color 0.3s ease;
+        }
+
+            .expense-title::after {
+                content: '';
+                position: absolute;
+                width: 0;
+                height: 3px;
+                bottom: 0;
+                left: 0;
+                background-color: #1565c0;
+                transition: width 0.3s ease;
+            }
+
+            .expense-title:hover {
+                color: #1565c0;
+            }
+
+                .expense-title:hover::after {
+                    width: 100%;
+                }
+
+        @@keyframes fadeInUp {
+            from
+
+        {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .expense-row {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .expense-item {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+            .expense-item:hover {
+                background-color: #fafafa;
+                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+                transform: translateY(-2px);
+            }
+
+        .expense-list {
+            list-style-type: none;
+            padding-left: 0;
+            margin-bottom: 15px;
+        }
+
+            .expense-list li {
+                padding: 6px 0;
+                font-size: 16px;
+                border-bottom: 1px dashed #ccc;
+            }
+
+        .btn-container {
+            text-align: right;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 8px 16px;
+            background-color: #2e7d32;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+
+            .btn:hover {
+                background-color: #1b5e20;
+            }
+
+        .btn-calc-wrapper {
+            text-align: right;
+            margin: 40px 20px 60px;
+        }
+
+        .calculate-expenses-btn {
+            background-color: #1565c0;
+            color: white;
+            padding: 12px 24px;
+            font-size: 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+            .calculate-expenses-btn:hover {
+                background-color: #0d47a1;
+                transform: scale(1.03);
+            }
+
+        .btn-floating {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: #1565c0;
+            color: white;
+            border: none;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+            font-size: 3.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            z-index: 1050;
+        }
+
+            .btn-floating:hover {
+                background-color: #0d47a1;
+                transform: scale(1.05);
+            }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h2 class="text-center mt-4 mb-4">Chi Tiết Chi Phí</h2>
+    </header>
+
+    <div class="container">
+        @foreach (var expense in Model)
+        {
+            <div class="expense-row">
+                <div class="expense-item">
+                    <div class="expense-title">Danh sách Nhân Viên</div>
+                    <ul class="expense-list">
+                        @foreach (var staff in expense.Staff)
+                        {
+                            <li>@staff.Ten</li>
+                        }
+                    </ul>
+                    <div class="btn-container">
+                        <a href="@Url.Action("ShowStaff", "Expense")" class="btn">Chi tiết</a>
+                    </div>
+                </div>
+
+                <div class="expense-item">
+                    <div class="expense-title">Hóa Đơn Điện Mới Nhất</div>
+                    <ul class="expense-list">
+                        @{
+                            var lastElec = expense.ElectricityBills.OrderByDescending(e => e.Ngay).FirstOrDefault();
+                            if (lastElec != null)
+                            {
+                                <li>@lastElec.MaBillElec - @lastElec.SoTien.ToString("C2") - @lastElec.Ngay.ToString("dd/MM/yyyy")</li>
+                            }
+                            else
+                            {
+                                <li>Không có hóa đơn điện</li>
+                            }
+                        }
+                    </ul>
+                    <div class="btn-container">
+                        <a href="@Url.Action("ShowElecBill", "Expense")" class="btn">Chi tiết</a>
+                    </div>
+                </div>
+
+                <div class="expense-item">
+                    <div class="expense-title">Hóa Đơn Nước Mới Nhất</div>
+                    <ul class="expense-list">
+                        @{
+                            var lastWater = expense.WaterBills.OrderByDescending(w => w.Ngay).FirstOrDefault();
+                            if (lastWater != null)
+                            {
+                                <li>@lastWater.MaBillWater - @lastWater.SoTien.ToString("C2") - @lastWater.Ngay.ToString("dd/MM/yyyy")</li>
+                            }
+                            else
+                            {
+                                <li>Không có hóa đơn nước</li>
+                            }
+                        }
+                    </ul>
+                    <div class="btn-container">
+                        <a href="@Url.Action("ShowWaterBill", "Expense")" class="btn">Chi tiết</a>
+                    </div>
+                </div>
+
+                @{
+                    decimal totalMaterialCostItem = expense.MaterialInputs.Sum(m => m.UnitPrice * m.Quantity);
+                }
+                <div class="expense-item">
+                    <div class="expense-title">Nhập nguyên liệu</div>
+                    <ul class="expense-list">
+                        <li>Tổng tiền: @totalMaterialCostItem.ToString("N0") đ</li>
+                    </ul>
+                    <div class="btn-container">
+                        <a href="@Url.Action("ShowMaterialInput", "Expense")" class="btn">Chi tiết</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <button type="button" class="btn-floating" data-bs-toggle="modal" data-bs-target="#expenseModal" title="Tính toán chi tiêu">
+        <i class="bi bi-currency-dollar"></i>
+    </button>
+
+    <!-- Modal -->
+    @{
+        var first = Model.FirstOrDefault();
+        decimal totalSalary = first?.Staff.Sum(s => s.Luong) ?? 0;
+        decimal latestElec = first?.ElectricityBills.OrderByDescending(e => e.Ngay).FirstOrDefault()?.SoTien ?? 0;
+        decimal latestWater = first?.WaterBills.OrderByDescending(w => w.Ngay).FirstOrDefault()?.SoTien ?? 0;
+        decimal totalMaterialCost = first?.MaterialInputs.Sum(m => m.UnitPrice * m.Quantity) ?? 0;
+        decimal totalExpense = totalSalary + latestElec + latestWater + totalMaterialCost;
+    }
+
+    <div class="modal fade" id="expenseModal" tabindex="-1" aria-labelledby="expenseModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="expenseModalLabel">Tổng Chi Tiêu</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>Khoản mục</th>
+                            <th>Số tiền</th>
+                        </tr>
+                        <tr>
+                            <td>Tổng lương nhân viên</td>
+                            <td>@totalSalary.ToString("N0") đ</td>
+                        </tr>
+                        <tr>
+                            <td>Hóa đơn điện (mới nhất)</td>
+                            <td>@latestElec.ToString("N0") đ</td>
+                        </tr>
+                        <tr>
+                            <td>Hóa đơn nước (mới nhất)</td>
+                            <td>@latestWater.ToString("N0") đ</td>
+                        </tr>
+                        <tr>
+                            <td>Tổng tiền nhập nguyên liệu</td>
+                            <td>@totalMaterialCost.ToString("N0") đ</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Tổng chi tiêu</strong></td>
+                            <td><strong>@totalExpense.ToString("N0") đ</strong></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

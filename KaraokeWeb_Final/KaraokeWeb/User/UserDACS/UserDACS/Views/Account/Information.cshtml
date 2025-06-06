@@ -1,0 +1,41 @@
+﻿@model UserDACS.Models.User
+@{
+    ViewData["Title"] = "Thông tin cá nhân";
+}
+
+<h2 class="text-warning mb-4">Thông tin cá nhân</h2>
+
+<table class="table table-bordered text-white">
+    <tr>
+        <th>Họ và tên</th>
+        <td>@Model.FullName</td>
+    </tr>
+    <tr>
+        <th>Giới tính</th>
+        <td>@Model.Gender</td>
+    </tr>
+    <tr>
+        <th>Số điện thoại</th>
+        <td>@Model.PhoneNumber</td>
+    </tr>
+    <tr>
+        <th>Ngày sinh</th>
+        <td>@(Model.DateOfBirth.HasValue? Model.DateOfBirth.Value.ToString("dd/MM/yyyy") : "")</td>
+    </tr>
+    <tr>
+        <th>Email</th>
+        <td>@Model.Email</td>
+    </tr>
+    <tr>
+        <th>Nghề nghiệp</th>
+        <td>@Model.Occupation</td>
+    </tr>
+    <tr>
+        <th>Địa chỉ</th>
+        <td>@Model.Address</td>
+    </tr>
+</table>
+
+<div class="mt-3">
+    <a asp-controller="Account" asp-action="EditInformation" class="btn btn-warning">Chỉnh sửa thông tin</a>
+</div>

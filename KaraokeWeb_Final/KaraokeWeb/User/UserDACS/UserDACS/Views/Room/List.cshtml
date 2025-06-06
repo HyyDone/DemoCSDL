@@ -1,0 +1,152 @@
+﻿@model IEnumerable<UserDACS.Models.Room>
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+@{
+    ViewData["Title"] = "Danh sách phòng";
+}
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        @TempData["Message"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        @TempData["ErrorMessage"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+<h2 class="mb-4">Danh sách phòng loại @HttpContextAccessor.HttpContext.Request.Query["type"]</h2>
+
+<div class="row g-4">
+    @foreach (var room in Model)
+    {
+        <div class="col-md-4" data-aos="zoom-in">
+            <div class="card room-card">
+                <img src="@room.ImageUrl" class="card-img-top" alt="@room.TenPhong" style="height:200px; object-fit:cover;" />
+                <div class="card-body">
+                    <h5 class="card-title">@room.TenPhong</h5>
+                    <p class="card-text">Giá: @String.Format("{0:N0}", room.Gia)đ/giờ</p>
+                    <p class="card-text">Sức chứa: @room.SucChua người</p>
+                    <div class="d-flex justify-content-between">
+                        <button type="button" class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#bookingModal" onclick="setRoomName('@room.TenPhong')">Đặt phòng</button>
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#cancelModal" onclick="setCancelRoomName('@room.TenPhong')">Hủy</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<div class="modal fade" id="bookingModal" tabindex="-1" aria-labelledby="bookingModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content bg-dark text-white">
+            <div class="modal-header">
+                <h5 class="modal-title text-center w-100 border border-light rounded py-2" id="bookingModalLabel">
+                    Đặt Phòng Karaoke
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="/Booking/SubmitBooking">
+                    <div class="mb-3">
+                        <label for="fullname" class="form-label">Họ tên</label>
+                        <input type="text" name="FullName" class="form-control" id="fullname" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="phone" class="form-label">Số điện thoại</label>
+                        <input type="tel" name="Phone" class="form-control" id="phone" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="text" name="Email" class="form-control" id="email" required>
+                    </div>
+                    <!-- Thêm dòng hiển thị thời gian đặt phòng hiện tại -->
+                    <div class="mb-3">
+                        <label class="form-label">Thời gian đã đặt:</label>
+                        <p id="existingBookingTime" style="color: #ffc107; font-weight: bold;">Chưa có đặt phòng</p>
+                    </div>
+                    <div class="mb-3">
+                        <label for="datetime" class="form-label">Thời gian đặt</label>
+                        <input type="datetime-local" name="BookingTime" class="form-control" id="datetime" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="endtime" class="form-label">Thời gian trả phòng</label>
+                        <input type="datetime-local" name="EndTime" class="form-control" id="endtime" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="room" class="form-label">Phòng</label>
+                        <input type="text" name="RoomName" class="form-control" id="room" readonly>
+                    </div>
+                    <div class="text-center mt-3">
+                        <button type="submit" class="btn btn-warning px-4">Xác nhận đặt phòng</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="cancelModal" tabindex="-1" aria-labelledby="cancelModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content bg-dark text-white">
+            <div class="modal-header">
+                <h5 class="modal-title text-center w-100 border border-light rounded py-2" id="cancelModalLabel">
+                    Xác nhận hủy đặt phòng
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="/Booking/CancelBooking">
+                    <div class="mb-3">
+                        <label for="cancelPhone" class="form-label">Nhập số điện thoại đã dùng đặt phòng</label>
+                        <input type="tel" name="Phone" class="form-control" id="cancelPhone" required />
+                    </div>
+                    <div class="mb-3">
+                        <label for="cancelRoom" class="form-label">Phòng</label>
+                        <input type="text" name="RoomName" class="form-control" id="cancelRoom" readonly />
+                    </div>
+                    <div class="text-center mt-3">
+                        <button type="submit" class="btn btn-danger px-4">Xác nhận hủy</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+
+        const roomBookingTimes = @Html.Raw(ViewBag.RoomBookingTimesJson ?? "{}");
+
+        function setRoomName(roomName) {
+            document.getElementById('room').value = roomName;
+
+            const bookingInfo = roomBookingTimes[roomName];
+            const display = bookingInfo
+                ? bookingInfo
+                : "Chưa có đặt phòng";
+
+            document.getElementById('existingBookingTime').innerText = display;
+        }
+
+        function setCancelRoomName(roomName) {
+            document.getElementById('cancelRoom').value = roomName;
+        }
+
+        function setCancelRoomName(roomName) {
+            document.getElementById('cancelRoom').value = roomName;
+        }
+
+    </script>
+}

@@ -1,0 +1,161 @@
+﻿@model IncomeViewModel
+@using System.Globalization
+
+@{
+    var jsonOptions = new System.Text.Json.JsonSerializerOptions
+    {
+        PropertyNamingPolicy = System.Text.Json.JsonNamingPolicy.CamelCase
+    };
+    var jsonOrders = System.Text.Json.JsonSerializer.Serialize(Model.Orders, jsonOptions);
+}
+
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tính toán thu nhập</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+        }
+
+        select, input[type="checkbox"] {
+            margin: 10px 5px 10px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: center;
+        }
+
+        .popup {
+            position: fixed;
+            top: 20%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            border: 2px solid #007bff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            display: none;
+            z-index: 1000;
+        }
+
+        .btn-close {
+            cursor: pointer;
+            color: red;
+            float: right;
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Tính Toán Thu Nhập</h2>
+
+        @{
+            var groupedDates = Model.Orders?
+            .Where(o => o.IsPaid)
+            .GroupBy(o => o.OrderDate.Date)
+            .OrderByDescending(g => g.Key)
+            .ToList();
+        }
+
+
+        @if (groupedDates != null && groupedDates.Any())
+        {
+            <label for="dateSelect">Chọn ngày:</label>
+            <select id="dateSelect">
+                @foreach (var group in groupedDates)
+                {
+                    <option value="@group.Key.ToString("yyyy-MM-dd")">
+                        @group.Key.ToString("dd/MM/yyyy")
+                    </option>
+                }
+            </select>
+            <button id="btnCalculate" class="btn btn-primary">Tính thu nhập</button>
+        }
+
+        <div id="orderList"></div>
+
+        <div class="btn-container" style="margin-top: 20px;">
+            <a href="@Url.Action("GetPaidOrders", "Order")" class="btn btn-success">Trở về</a>
+        </div>
+
+        <div class="popup" id="popupSummary">
+            <span class="btn-close" onclick="closePopup()">×</span>
+            <h4>Thông tin thu nhập ngày <span id="popupDate"></span></h4>
+            <p>Số lượng hóa đơn: <strong id="popupCount"></strong></p>
+            <p>Tổng tiền: <strong id="popupTotal"></strong></p>
+        </div>
+    </div>
+
+    <script>
+        const orders = @Html.Raw(jsonOrders);
+
+        const dateSelect = document.getElementById("dateSelect");
+        const btnCalculate = document.getElementById("btnCalculate");
+        const orderList = document.getElementById("orderList");
+
+        function renderOrdersByDate(selectedDate, showPopup = false) {
+            const filtered = orders.filter(o => {
+                const datePart = o.orderDate.split("T")[0];
+                return o.isPaid && datePart === selectedDate;
+            }).sort((a, b) => a.orderId - b.orderId);
+
+            if (filtered.length === 0) {
+                orderList.innerHTML = "<p>Không có hóa đơn nào trong ngày này.</p>";
+                return;
+            }
+
+            let html = `<table>
+                <thead><tr><th>Mã Đơn Hàng</th><th>Tổng Tiền</th></tr></thead><tbody>`;
+            let total = 0;
+
+            filtered.forEach(o => {
+                html += `<tr><td>${o.orderId}</td><td>${(o.totalAmount ?? 0).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</td></tr>`;
+                total += o.totalAmount ?? 0;
+            });
+
+            html += `</tbody></table>`;
+            orderList.innerHTML = html;
+
+            if (showPopup) {
+                document.getElementById("popupDate").textContent = new Date(selectedDate).toLocaleDateString('vi-VN');
+                document.getElementById("popupCount").textContent = filtered.length;
+                document.getElementById("popupTotal").textContent = total.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+                document.getElementById("popupSummary").style.display = "block";
+            }
+        }
+
+        function closePopup() {
+            document.getElementById("popupSummary").style.display = "none";
+        }
+
+        dateSelect?.addEventListener("change", () => renderOrdersByDate(dateSelect.value));
+        btnCalculate?.addEventListener("click", () => renderOrdersByDate(dateSelect.value, true));
+
+        if (dateSelect?.value) {
+            renderOrdersByDate(dateSelect.value);
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,26 @@
+﻿@model UserDACS.Models.Menu
+
+@{
+    ViewData["Title"] = "Thông tin món ăn";
+}
+
+<div class="container mt-4">
+    <div class="card bg-dark text-white mx-auto" style="max-width: 600px;">
+        <img src="@Url.Content("~/" + Model.ImageUrl)" class="card-img-top" alt="@Model.TenMon" style="height: 300px; object-fit: cover;" />
+        <div class="card-body">
+            <h2 class="card-title">@Model.TenMon</h2>
+            <p class="card-text">@Model.MoTa</p>
+            <h4 class="fw-bold">Giá: @Model.Gia.ToString("N0") VNĐ</h4>
+            <button class="btn btn-warning btn-lg" onclick="orderItem('@Model.MaMon')">Đặt món</button>
+            <button class="btn btn-secondary btn-lg ms-3" onclick="window.location.href='@Url.Action("ShowMenu", "Menu")'">Trở lại</button>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function orderItem(maMon) {
+            alert("Đã đặt món: " + maMon);
+        }
+    </script>
+}

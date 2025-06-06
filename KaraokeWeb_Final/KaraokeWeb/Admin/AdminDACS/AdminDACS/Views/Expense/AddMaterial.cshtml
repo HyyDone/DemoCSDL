@@ -1,0 +1,41 @@
+﻿@model AdminDACS.Models.AddMaterialViewModel
+
+@{
+    ViewData["Title"] = "Nhập nguyên liệu";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+else
+{
+    <form asp-action="AddMaterial" method="post">
+        <div class="form-group">
+            <label for="SelectedMaNL">Chọn nguyên liệu</label>
+            <select asp-for="SelectedMaNL" class="form-control"
+                    asp-items="@(new SelectList(Model?.DanhSachNguyenLieu ?? new List<Warehouse>(), "MaNL", "TenNL"))">
+                <option value="">-- Chọn nguyên liệu --</option>
+            </select>
+            <span asp-validation-for="SelectedMaNL" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="SoLuongNhap">Số lượng nhập</label>
+            <input asp-for="SoLuongNhap" class="form-control" type="number" min="1" />
+            <span asp-validation-for="SoLuongNhap" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-success">Thêm nguyên liệu</button>
+    </form>
+}
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

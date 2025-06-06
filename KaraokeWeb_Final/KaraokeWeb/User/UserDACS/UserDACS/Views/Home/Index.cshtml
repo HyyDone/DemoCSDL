@@ -1,0 +1,483 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Thiên Đường Karaoke</title>
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet"
+          href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #2B2219;
+        }
+
+        .text-box {
+            font-family: Literata, serif;
+            background: #2E2B2A;
+            color: white;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            border-radius: 12px;
+            height: 500px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .text-box1 {
+            font-family: Literata, serif;
+            background: #2E2B2A;
+            color: white;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            border-radius: 12px;
+            height: 500px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .btn-custom {
+            background-color: #f5b041;
+            color: #CD5C5C;
+            border: none;
+            transition: background-color 0.3s ease;
+            width: max-content;
+            padding: 10px 20px;
+            font-weight: 600;
+            border-radius: 25px;
+            animation: pulse-scale 1.5s infinite ease-in-out;
+        }
+
+            .btn-custom:hover {
+                background-color: #e67e22;
+                color: #8B0000;
+            }
+
+        @@keyframes pulse-scale {
+            0%, 100%
+
+        {
+            transform: scale(1);
+        }
+
+        50% {
+            transform: scale(1.1);
+        }
+
+        }
+
+        .highlight-box {
+            display: inline-block;
+            padding: 5px 12px;
+            border: 2px solid #ff4500;
+            border-radius: 30px;
+            font-weight: bold;
+            color: #ff4500;
+            cursor: pointer;
+        }
+
+        .room-card img {
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .room-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+            .card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            }
+
+        footer {
+            background-color: #1f1d1c;
+            color: white;
+            padding: 40px 0;
+        }
+
+            footer h5 {
+                color: #d8a35d;
+                text-transform: uppercase;
+                margin-bottom: 20px;
+                letter-spacing: 1px;
+            }
+
+            footer a {
+                color: white;
+                text-decoration: none;
+            }
+
+                footer a:hover {
+                    text-decoration: underline;
+                }
+
+        .footer-icon {
+            margin-right: 10px;
+        }
+
+        .intro-box {
+            background-color: #1f1d1c;
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 40px;
+        }
+
+            .intro-box h2 {
+                color: #d8a35d;
+            }
+
+            .intro-box p span {
+                font-weight: bold;
+                color: #f2c94c;
+            }
+
+        .intro-box1 {
+            background-color: #1f1d1c;
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 40px;
+        }
+
+            .intro-box1 h2 {
+                color: #d8a35d;
+            }
+
+            .intro-box1 p span {
+                font-weight: bold;
+                color: #f2c94c;
+            }
+
+        .ladi-headline {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            margin-bottom: 50px;
+            color: #d6b26b;
+            text-transform: uppercase;
+            text-align: center;
+            font-size: 20px;
+            width: 100%;
+            display: inline-block;
+            word-break: break-word;
+            background-size: cover;
+            background-position: center center;
+        }
+            
+        .fancy-text {
+            position: relative;
+            display: inline-block;
+            font-size: 25px;
+            font-weight: bold;
+            text-align: center;
+            color: white;
+            letter-spacing: 1px;
+            margin-bottom: 30px;
+            padding: 10px 0;
+        }
+
+            /* Gạch dưới dạng gradient mờ dần */
+            .fancy-text::after,
+            .fancy-text::before {
+                content: "";
+                position: absolute;
+                left: 0;
+                width: 100%;
+                height: 2px;
+                background: linear-gradient(to right, transparent, #f2c94c, transparent);
+                opacity: 0.6;
+            }
+
+            /* Gạch dưới */
+            .fancy-text::after {
+                bottom: 0;
+            }
+
+            /* Gạch trên */
+            .fancy-text::before {
+                top: 0;
+            }
+
+        .row.equal-height {
+            align-items: stretch;
+        }
+
+        .intro-box1, .text-box1 {
+            height: 90%;
+            box-sizing: border-box;
+        }
+
+
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark animate__animated animate__fadeInDown">
+        <div class="container">
+            <a class="navbar-brand" href="#">Thiên Đường Karaoke</a>
+        </div>
+    </nav>
+
+    <div class="container my-4">
+        <div class="row">
+            <!-- Thay thế cột bên trái bằng text-box với style mới -->
+            <div class="col-md-4">
+                <div class="text-box">
+                    <h2 class="ladi-headline"><strong>Thiên Đường Karaoke</strong></h2>
+                    <span id="changing-text" class="fancy-text">Sang trọng và đẳng cấp</span>
+                    <p>Đặt phòng karaoke dễ dàng</p>
+                    <p>Trải nghiệm tiện lợi, đặt bàn chỉ trong vài bước</p>
+                    <button class="btn-custom mt-3" onclick="location.href='#dat-phong'">Đặt ngay</button>
+                </div>
+            </div>
+
+            <!-- Carousel bên phải giữ nguyên -->
+            <div class="col-md-8">
+                <div id="bannerCarousel"
+                     class="carousel slide"
+                     data-bs-ride="carousel"
+                     data-bs-interval="2000"
+                     style="height: 500px">
+                    <div class="carousel-inner h-100">
+                        <div class="carousel-item active h-100">
+                            <img src="/images/Thumbnail.png"
+                                 class="d-block w-100 h-100"
+                                 alt="Banner 1"
+                                 style="object-fit: cover" />
+                            <div class="carousel-caption d-none d-md-block">
+                                <h1 class="text-white">Đặt phòng karaoke dễ dàng</h1>
+                                <p>Trải nghiệm tiện lợi, đặt phòng chỉ trong vài bước</p>
+                            </div>
+                        </div>
+                        <div class="carousel-item h-100">
+                            <img src="/images/Thumbnail2.jpg"
+                                 class="d-block w-100 h-100"
+                                 alt="Banner 2"
+                                 style="object-fit: cover" />
+                            <div class="carousel-caption d-none d-md-block">
+                                <h1 class="text-white">Đặt phòng karaoke dễ dàng</h1>
+                                <p>Trải nghiệm tiện lợi, đặt phòng chỉ trong vài bước</p>
+                            </div>
+                        </div>
+                        <div class="carousel-item h-100">
+                            <img src="/images/Thumbnail3.jpg"
+                                 class="d-block w-100 h-100"
+                                 alt="Banner 3"
+                                 style="object-fit: cover" />
+                            <div class="carousel-caption d-none d-md-block">
+                                <h1 class="text-white">Đặt phòng karaoke dễ dàng</h1>
+                                <p>Trải nghiệm tiện lợi, đặt phòng chỉ trong vài bước</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev"
+                            type="button"
+                            data-bs-target="#bannerCarousel"
+                            data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Trước</span>
+                    </button>
+                    <button class="carousel-control-next"
+                            type="button"
+                            data-bs-target="#bannerCarousel"
+                            data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Sau</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Phần còn lại giữ nguyên -->
+    <!-- ... -->
+    <div class="container mt-5" data-aos="fade-up">
+        <div class="row equal-height">
+            <div class="col-md-8">
+                <div class="intro-box1" id="gioi-thieu">
+                    <h2>Thiên Đường Karaoke</h2>
+                    <p><em>Địa điểm giao lưu âm nhạc sang trọng bậc nhất Sài Thành.</em></p>
+                    <hr />
+                    <p>
+                        <span>Đặt phòng ngay:</span> 0123456789<br />
+                        <span>* Sức chứa:</span> tối đa 40 người/phòng - 20 phòng<br />
+                        <span>* Thể loại nhạc:</span> Mọi thể loại<br />
+                        <span>* Thông tin chung:</span>
+                    </p>
+                    <p>
+                        Thiên Đường Karaoke mang phong cách thiết kế hiện đại nhưng lại chẳng
+                        kém phần sang trọng, tinh tế. Dàn âm thanh hiện đại được nhập khẩu
+                        trực tiếp kết hợp với hệ thống đèn lung linh huyền ảo và chức năng
+                        cảm biến nhạc,... Chắc chắn sẽ đem tới cho khách hàng những phút giây
+                        giải trí, thăng hoa như đang đứng trên một sân diễn thu nhỏ.
+                    </p>
+                    <p>
+                        Thực khách có thể tự do, thoải mái thể hiện bản thân mình. Bên cạnh
+                        đó, đội ngũ nhân viên chăm sóc khách hàng của quán còn được đánh giá
+                        rất cao về thái độ phục vụ cũng như phong thái chuyên nghiệp. Thiên
+                        Đường Karaoke chắc chắn sẽ đem lại sự hài lòng cho mỗi vị khách khi
+                        đặt chân đến đây.
+                    </p>
+                    <hr />
+                    <span style="color: #f7c948;">* LƯU Ý:</span>
+                    <p style="color: #ff6666;">
+                        Quán không phục vụ khách dưới 18 tuổi, khách sau 22h vui lòng không
+                        hát hoặc hát nhẹ nhàng.
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="text-box1" style="overflow-y: auto; text-align: left; padding-left: 10px;">
+                    <h3 style="color: #f5b041; margin-bottom: 20px;">GIỜ HOẠT ĐỘNG:</h3>
+                    <p style="margin-left: 0; padding-left: 0;">
+                        🕒 Thứ 2: 10:00 a.m - 2:00 a.m<br />
+                        🕒 Thứ 3: 10:00 a.m - 2:00 a.m<br />
+                        🕒 Thứ 4: 10:00 a.m - 2:00 a.m<br />
+                        🕒 Thứ 5: 10:00 a.m - 2:00 a.m<br />
+                        🕒 Thứ 6: 10:00 a.m - 2:00 a.m<br />
+                        🕒 Thứ 7: 10:00 a.m - 2:00 a.m<br />
+                        🕒 Chủ nhật: 10:00 a.m - 2:00 a.m
+                    </p>
+                    <h3 style="color: #f5b041; margin-top: 30px; margin-bottom: 20px;">THÔNG TIN THÊM:</h3>
+                    <p style="margin-left: 0; padding-left: 0;">
+                        Trang trí sự kiện<br />
+                        Thanh toán thẻ<br />
+                        Chỗ đỗ xe ô tô<br />
+                        Xuất hoá đơn VAT<br />
+                        Wifi
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <section id="dat-phong" style="background-color: #261c13; color: white;" class="py-5" data-aos="fade-up">
+        <div class="container">
+            <h2 class="mb-4 text-white">🎤 Danh sách phòng karaoke</h2>
+            <div class="row g-4">
+                <!-- Phòng 1 -->
+                <div class="col-md-4" data-aos="zoom-in">
+                    <div class="card room-card">
+                        <img src="/images/PhongVIP4.jpg" class="card-img-top" alt="Phòng VIP 3-4">
+                        <div class="card-body">
+                            <h5 class="card-title">Phòng VIP 3-4</h5>
+                            <p class="card-text">Giá: 400.000đ/giờ</p>
+                            <p class="card-text">Sức chứa: 5 - 12 người</p>
+                            <a href="/Room/List?type=VIP34" class="btn btn-warning">Xem phòng</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Phòng 2 -->
+                <div class="col-md-4" data-aos="zoom-in">
+                    <div class="card room-card">
+                        <img src="/images/PhongVIP7.jpg" class="card-img-top" alt="Phòng VIP 7">
+                        <div class="card-body">
+                            <h5 class="card-title">Phòng VIP 7</h5>
+                            <p class="card-text">Giá: 600.000đ/giờ</p>
+                            <p class="card-text">Sức chứa: 18 - 25 người</p>
+                            <a href="/Room/List?type=VIP7" class="btn btn-warning">Xem phòng</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Phòng 3 -->
+                <div class="col-md-4" data-aos="zoom-in">
+                    <div class="card room-card">
+                        <img src="/images/PhongVIP1-9.jpg" class="card-img-top" alt="Phòng VIP 1-9">
+                        <div class="card-body">
+                            <h5 class="card-title">Phòng VIP 1-9</h5>
+                            <p class="card-text">Giá: 500.000đ/giờ</p>
+                            <p class="card-text">Sức chứa: 5 - 12 người</p>
+                            <a href="/Room/List?type=VIP19" class="btn btn-warning">Xem phòng</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Phòng 4 -->
+                <div class="col-md-4" data-aos="zoom-in">
+                    <div class="card room-card">
+                        <img src="/images/PhongVIPVV.jpg" class="card-img-top" alt="Phòng VIP VV">
+                        <div class="card-body">
+                            <h5 class="card-title">Phòng VIP VV</h5>
+                            <p class="card-text">Giá: 700.000đ/giờ</p>
+                            <p class="card-text">Sức chứa: 30 người</p>
+                            <a href="/Room/List?type=VIPVV" class="btn btn-warning">Xem phòng</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="lien-he" data-aos="fade-up">
+        <div class="container">
+            <div class="row text-start">
+                <div class="col-md-3">
+                    <h5>Thông tin liên hệ</h5>
+                    <p><span class="footer-icon">📞</span> Hotline CSKH: 0123456789<br>Hoạt động 24/7 (Kể cả ngày Lễ, Tết).</p>
+                    <p><span class="footer-icon">📧</span> Email: thienduongkaraokeising@gmail.com</p>
+                    <p><span class="footer-icon">📘</span> <a href="https://www.facebook.com/vo.the.canh.2024" target="_blank">facebook.com/ThienDuongKaraoke</a></p>
+                </div>
+                <div class="col-md-3">
+                    <h5>Về Booking KTV</h5>
+                    <ul class="list-unstyled">
+                        <li>▶ Giới thiệu</li>
+                        <li>▶ Trang chủ</li>
+                        <li>▶ Tìm kiếm địa điểm</li>
+                        <li>▶ Blog Booking KTV</li>
+                        <li>▶ Liên hệ hợp tác</li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5>Điều khoản sử dụng</h5>
+                    <ul class="list-unstyled">
+                        <li>▶ Tìm kiếm</li>
+                        <li>▶ Giới thiệu</li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5>Đăng ký nhận tin</h5>
+                    <p>Đăng ký và nhận email cung cấp các thông tin mới nhất của Thiên Đường Karaoke về chương trình khuyến mãi và ưu đãi từ Quán.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+    <script>
+        const texts = [
+            "Sang trọng và đẳng cấp",
+            "Sang trọng và tiện nghi",
+            "Sang trọng và hiện đại",
+            "Sang trọng và độc đáo"
+        ];
+
+        let index = 0;
+        const textElement = document.getElementById("changing-text");
+
+        setInterval(() => {
+            index = (index + 1) % texts.length;
+            textElement.textContent = texts[index];
+        }, 1000);
+    </script>
+
+</body>
+</html>

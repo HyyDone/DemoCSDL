@@ -1,0 +1,143 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] Thiên Đường Karaoke</title>
+    <script type="importmap"></script>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/UserDACS.styles.css" asp-append-version="true" />
+
+    <style>
+        body {
+            background-color: #1A1A1A;
+            color: white;
+        }
+
+        .navbar-dark .navbar-nav .nav-link {
+            position: relative;
+            font-family: 'Georgia', 'Times New Roman', serif;
+            color: white !important;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2.5px;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+            padding: 10px 16px;
+            background-color: transparent !important;
+        }
+
+            .navbar-dark .navbar-nav .nav-link:hover,
+            .navbar-dark .navbar-nav .nav-link:focus {
+                color: #f4a259 !important;
+                background-color: transparent !important;
+                box-shadow: none;
+                transform: none;
+                text-decoration: none;
+            }
+
+            .navbar-dark .navbar-nav .nav-link::after {
+                display: none;
+            }
+
+            .navbar-dark .navbar-nav .nav-link.active {
+                color: #f4a259 !important;
+                background-color: transparent !important;
+            }
+
+        .ktv-brand {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            color: #d6b26b !important;
+            font-size: 1.4rem;
+            font-weight: bold;
+            padding: 6px 16px;
+            border: 1px solid #d6b26b;
+            border-radius: 32px;
+            transition: all 0.3s ease;
+        }
+
+            .ktv-brand:hover {
+                background-color: #d6b26b;
+                color: #1A1A1A !important;
+                text-decoration: none;
+                box-shadow: 0 0 10px rgba(214, 178, 107, 0.5);
+            }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <a class="navbar-brand ktv-brand" asp-area="" asp-controller="Home" asp-action="Index">Thiên Đường Karaoke</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#gioi-thieu">Giới thiệu</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#dat-phong">Đặt phòng</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#lien-he">Liên hệ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Menu" asp-action="ShowMenu">Menu</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="AccumulatePoints" asp-action="ShowAccumulatePoints">Tích điểm</a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav ms-auto">
+                        @if (Context.Session.GetString("Username") != null)
+                        {
+                            <li class="nav-item">
+                                <a asp-controller="Account" asp-action="Information" class="btn btn-outline-warning me-3">
+                                    Xin chào, @Context.Session.GetString("Username")
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Account" asp-action="Logout">Log Out</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Account" asp-action="Login">Login</a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @if (TempData["SuccessMessage"] != null)
+            {
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    @TempData["SuccessMessage"]
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            }
+            @if (TempData["ErrorMessage"] != null)
+            {
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    @TempData["ErrorMessage"]
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            }
+            @RenderBody()
+        </main>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
